@@ -158,13 +158,25 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 
-### 5. Crear un superusuario (opcional, para entrar al admin)
+### 5. Inicializar grupos, idiomas y países por default.
+
+```bash
+python manage.py init_accounts
+```
+
+### 6. Generar catálogo de aves con GBIF API (Opcional).
+
+```bash
+python manage.py load_species
+```
+
+### 7. Crear un superusuario (opcional, para entrar al admin)
 
 ```bash
 python manage.py createsuperuser
 ```
 
-### 6. Ejecutar el servidor local
+### 8. Ejecutar el servidor local
 
 ```bash
 python manage.py runserver

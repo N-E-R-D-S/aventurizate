@@ -22,7 +22,8 @@ class Command(BaseCommand):
                     country="NI",      # Nicaragua
                     taxon_key=212,     # Aves
                     limit=limit,
-                    start=start
+                    start=start,
+                    year=2025,  # Solo descargar datos actuales
                 )
 
                 total_records = data["count"]
