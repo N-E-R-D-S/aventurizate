@@ -1,18 +1,46 @@
 from django.core.management.base import BaseCommand
 from pygbif import occurrences
 from django.db import transaction
-from birds.models import BirdSpecies, BirdFamily, BirdOrder, BirdGenus, BirdObservation
+from birds.models import Species, Family, Order, Genus, IUCNRedListCategory
 
 
 class Command(BaseCommand):
-    help = "Carga especies y observaciones de aves para Nicaragua desde GBIF"
+    help = "Carga especies de aves observadas en Nicaragua desde GBIF a partir de 2024"
 
     def handle(self, *args, **kwargs):
         limit = 300  # GBIF máximo por request
         start = 0
         total_records = 1
         processed_species = 0
-        processed_obs = 0
+        total_species = 0
+
+        CATEGORIES = [
+            {"code": "NE", "name": "Not Evaluated",
+                "description": "Species has not yet been evaluated against the criteria."},
+            {"code": "DD", "name": "Data Deficient",
+                "description": "Inadequate information to make a direct or indirect assessment."},
+            {"code": "LC", "name": "Least Concern",
+                "description": "Widespread and abundant taxa."},
+            {"code": "NT", "name": "Near Threatened",
+                "description": "Close to qualifying for or likely to qualify for a threatened category in the near future."},
+            {"code": "VU", "name": "Vulnerable",
+                "description": "High risk of endangerment in the wild."},
+            {"code": "EN", "name": "Endangered",
+                "description": "Very high risk of extinction in the wild."},
+            {"code": "CR", "name": "Critically Endangered",
+                "description": "Extremely high risk of extinction in the wild."},
+            {"code": "EW", "name": "Extinct in the Wild",
+                "description": "Known only to survive in cultivation, captivity or as a naturalized population outside its past range."},
+            {"code": "EX", "name": "Extinct",
+                "description": "No known individuals remaining."},
+        ]
+
+        for cat in CATEGORIES:
+            obj, created = IUCNRedListCategory.objects.get_or_create(
+                code=cat["code"],
+                defaults={"name": cat["name"],
+                          "description": cat["description"]}
+            )
 
         self.stdout.write(self.style.NOTICE("Iniciando carga desde GBIF..."))
 
@@ -23,7 +51,7 @@ class Command(BaseCommand):
                     taxon_key=212,     # Aves
                     limit=limit,
                     start=start,
-                    year=2025,  # Solo descargar datos actuales
+                    year="2024,2025",  # Solo descargar datos actuales
                 )
 
                 total_records = data["count"]
@@ -34,59 +62,43 @@ class Command(BaseCommand):
                     if not sci_name:
                         continue
 
-                    common_name = occ.get("vernacularName") or sci_name
+                    common_name = occ.get("genericName") or sci_name
                     genus_name = occ.get("genus")
                     family_name = occ.get("family")
                     order_name = occ.get("order")
+                    iucn_red_list_category_name = occ.get(
+                        "iucnRedListCategory")
 
                     with transaction.atomic():
-                        order, _ = BirdOrder.objects.get_or_create(
+                        order, _ = Order.objects.get_or_create(
                             name=order_name)
-                        family, _ = BirdFamily.objects.get_or_create(
+                        family, _ = Family.objects.get_or_create(
                             name=family_name, order=order)
-                        genus, _ = BirdGenus.objects.get_or_create(
+                        genus, _ = Genus.objects.get_or_create(
                             name=genus_name, family=family)
+                        iucn_red_list_category = None
+                        if iucn_red_list_category_name:
+                            iucn_red_list_category = IUCNRedListCategory.objects.filter(
+                                code__icontains=iucn_red_list_category_name)
+                            if iucn_red_list_category.exists():
+                                iucn_red_list_category = iucn_red_list_category.first()
 
-                        species_obj, created = BirdSpecies.objects.get_or_create(
+                        species_obj, created = Species.objects.get_or_create(
                             scientific_name=sci_name,
                             defaults={
                                 "common_name": common_name,
                                 "genus": genus,
+                                "iucn_red_list_category": iucn_red_list_category
                             }
                         )
+                        if created:
+                            total_species += 1
 
                         processed_species += 1
-                        status = "creada" if created else "existente"
-                        self.stdout.write(
-                            f"[{processed_species}/{total_records}] Especie {sci_name} ({status})"
-                        )
-
-                        # Crear observación si hay coordenadas
-                        lat = occ.get("decimalLatitude")
-                        lon = occ.get("decimalLongitude")
-                        date_observed = occ.get("eventDate")
-                        gbif_id = occ.get("key") or occ.get("occurrenceID")
-
-                        if lat and lon and gbif_id:
-                            obs, created_obs = BirdObservation.objects.get_or_create(
-                                gbif_id=str(gbif_id),
-                                defaults={
-                                    "bird": species_obj,
-                                    "latitude": lat,
-                                    "longitude": lon,
-                                    "date_observed": date_observed[:10] if date_observed else None,
-                                    "count": occ.get("individualCount") or 1,
-                                    "note": occ.get("occurrenceRemarks") or "",
-                                    "observer": None,  # No tenemos datos del usuario
-                                }
-                            )
-                            if created_obs:
-                                processed_obs += 1
 
                 start += limit
                 self.stdout.write(self.style.SUCCESS(
                     f"Avance: {start}/{total_records} registros procesados "
-                    f"(Obs nuevas: {processed_obs})"
                 ))
 
             except Exception as e:
@@ -95,6 +107,4 @@ class Command(BaseCommand):
                 break
 
         self.stdout.write(self.style.SUCCESS(
-            f"Carga finalizada 🚀 Total especies procesadas: {processed_species}, "
-            f"Observaciones nuevas: {processed_obs}"
-        ))
+            f"Carga finalizada 🚀 Total especies agregadas: {total_species}, "))
