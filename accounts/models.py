@@ -78,6 +78,9 @@ class GuideProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=30, blank=True)
     experience_years = models.IntegerField(default=0)
+    verified = models.BooleanField(default=False)
+    rating = models.DecimalField(
+        max_digits=3, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
         return f"Guide {self.user.username}"

@@ -23,8 +23,8 @@ class Habitat(models.Model):
 
 
 class IUCNRedListCategory(models.Model):
-    code = models.CharField(max_length=5, unique=True)  # Ejemplo: CR, EN, VU
-    name = models.CharField(max_length=100)  # Nombre completo
+    code = models.CharField(max_length=5, unique=True)
+    name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):

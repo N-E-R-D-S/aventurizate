@@ -26,9 +26,19 @@ class TouristProfileAdmin(admin.ModelAdmin):
 # Perfil de guías
 @admin.register(GuideProfile)
 class GuideProfileAdmin(admin.ModelAdmin):
-    list_display = ("user", "phone_number", "experience_years")
-    search_fields = ("user__username", "phone_number")
+    list_display = (
+        "user",
+        "phone_number",
+        "experience_years",
+        "verified",
+        "rating",
+    )
+    # Para filtrar rápidamente por guías verificados
+    list_filter = ("verified",)
+    search_fields = ("user__username", "user__email", "phone_number")
     autocomplete_fields = ("user",)
+    # Primero los verificados y mejor calificados
+    ordering = ("-verified", "-rating")
 
 
 # Usuario personalizado
