@@ -69,7 +69,7 @@ class TouristProfile(models.Model):
         Country, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return f"Tourist {self.user.username} ({self.country.name})"
+        return f"Tourist {self.user.username} ({self.country and self.country.name or 'No country'})"
     # favorite_birds = models.TextField(blank=True) # Todavía no se ha definido modelo para aves
 
 
