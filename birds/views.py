@@ -21,16 +21,11 @@ def bird_list_view(request):
     return render(request, "birds/bird_list.html", context)
 
 
-def bird_detail_view(request, pk):
+def bird_detail_view(request, slug):
     """
     Vista para mostrar el detalle de un ave
     """
-    bird = get_object_or_404(
-        Species.objects.select_related(
-            "genus__family__order", "iucn_red_list_category"
-        ),
-        pk=pk,
-    )
+    bird = get_object_or_404(Species, slug=slug)
     photos = Photo.objects.filter(bird=bird)
     context = {"bird": bird, "photos": photos}
 
