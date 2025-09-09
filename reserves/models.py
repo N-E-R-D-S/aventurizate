@@ -14,15 +14,21 @@ class Reserve(models.Model):
     longitude = models.DecimalField(
         max_digits=9, decimal_places=6, null=True, blank=True)
 
-    # Aves que se pueden encontrar en la reserva (Birds App)
     birds = models.ManyToManyField(
         "birds.Species", blank=True)
 
-    # Relación con guías disponibles en la reserva
-    guides = models.ManyToManyField(
-        "accounts.GuideProfile",
-        blank=True,
-    )
-
     def __str__(self):
         return self.name
+
+
+class ReservePhoto(models.Model):
+    """
+    Modelo para fotos de reservas
+    """
+    reserve = models.ForeignKey(Reserve, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='reserve_photos/')
+    description = models.CharField(max_length=255, blank=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Foto de {self.reserve.name} - {self.description[:30]}"

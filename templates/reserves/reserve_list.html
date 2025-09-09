@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Reservas Naturales</h1>
+
+<ul>
+    {% for reserve in reserves %}
+        <li>
+        <a href="{% url 'reserve_detail' reserve.pk %}">{{ reserve.name }}</a>
+        <p>{{ reserve.description|truncatewords:20 }}</p>
+        {% if reserve.latitude and reserve.longitude %}
+            <small>Ubicación: {{ reserve.latitude }}, {{ reserve.longitude }}</small>
+        {% endif %}
+        </li>
+    {% empty %}
+        <li>No hay reservas disponibles.</li>
+    {% endfor %}
+</ul>
+
+<!-- Paginación -->
+<div>
+    {% if reserves.has_previous %}
+        <a href="?page=1">« Primero</a>
+        <a href="?page={{ reserves.previous_page_number }}">‹ Anterior</a>
+    {% endif %}
+
+    <span>
+        Página {{ reserves.number }} de {{ reserves.paginator.num_pages }}
+    </span>
+
+    {% if reserves.has_next %}
+        <a href="?page={{ reserves.next_page_number }}">Siguiente ›</a>
+        <a href="?page={{ reserves.paginator.num_pages }}">Último »</a>
+    {% endif %}
+</div>
+{% endblock %}
