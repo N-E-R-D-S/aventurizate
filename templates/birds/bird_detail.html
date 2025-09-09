@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
-
-{% block content %}
+{% load static %}
+{% block body %}
 <h1>{{ bird.common_name }}</h1>
 <p><em>{{ bird.scientific_name }}</em></p>
 
@@ -28,7 +28,7 @@
         </figure>
     {% empty %}
         <figure>
-            <img src="{% static 'images/no_bird_photo.jpg' %}" alt="Sin foto disponible">
+            <img src="{% static 'images/no_bird_photo.png' %}" alt="Sin foto disponible">
             {% if photo.description %}
                 <figcaption>{{ photo.description }}</figcaption>
             {% endif %}

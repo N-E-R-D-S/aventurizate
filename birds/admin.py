@@ -21,20 +21,16 @@ class FamilyAdmin(admin.ModelAdmin):
 @admin.register(Genus)
 class GenusAdmin(admin.ModelAdmin):
     list_display = ("name", "family", "description")
-    list_filter = ("family",)
     search_fields = ("name", "family__name")
 
 
 @admin.register(Species)
 class SpeciesAdmin(admin.ModelAdmin):
-    list_display = ("common_name", "scientific_name", "genus", "type")
-    list_filter = ("genus", "type", "habitats")
+    list_display = ("common_name", "scientific_name", "genus")
     search_fields = ("common_name", "scientific_name")
-    filter_horizontal = ("habitats",)  # Para ManyToMany
 
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ("bird", "description", "created_at")
-    list_filter = ("bird",)
     search_fields = ("bird__common_name", "description")

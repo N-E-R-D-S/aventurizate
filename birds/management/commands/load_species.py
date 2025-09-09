@@ -5,7 +5,7 @@ from birds.models import Species, Family, Order, Genus, IUCNRedListCategory
 
 
 class Command(BaseCommand):
-    help = "Carga especies de aves observadas en Nicaragua desde GBIF a partir de 2024"
+    help = "Carga especies de aves observadas en Nicaragua desde GBIF a partir de 2025"
 
     def handle(self, *args, **kwargs):
         limit = 300  # GBIF máximo por request
@@ -51,7 +51,7 @@ class Command(BaseCommand):
                     taxon_key=212,     # Aves
                     limit=limit,
                     start=start,
-                    year="2024,2025",  # Solo descargar datos actuales
+                    year="2025",  # Solo descargar datos actuales
                 )
 
                 total_records = data["count"]

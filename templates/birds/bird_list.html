@@ -10,12 +10,12 @@
         {% if bird.photo_set.first %}
             <img src="{{ bird.photo_set.first.image.url }}" alt="Foto de {{ bird.common_name }}">
         {% else %}
-            <img src="{% static 'images/no_bird_photo.jpg' %}" alt="Sin foto disponible">
+            <img src="{% static 'images/no_bird_photo.png' %}" alt="Sin foto disponible">
         {% endif %}
         <div>
             <h2>{{ bird.common_name }}</h2>
             <p>{{ bird.scientific_name }}</p>
-            <a href="{% url 'birds:bird_detail' bird.slug %}">Ver más</a>
+            <a href="{% url 'bird_detail' bird.slug %}">Ver más</a>
         </div>
     </div>
     {% endfor %}
