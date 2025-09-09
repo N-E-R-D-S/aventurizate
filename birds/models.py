@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.utils.text import slugify
 
 User = settings.AUTH_USER_MODEL
 
@@ -57,6 +58,18 @@ class Species(models.Model):
     genus = models.ForeignKey(
         Genus, on_delete=models.PROTECT)
     description = models.TextField(blank=True)
+    slug = models.SlugField(max_length=220, unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.common_name)
+            slug = base_slug
+            counter = 1
+            while Species.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.common_name} ({self.scientific_name})"
