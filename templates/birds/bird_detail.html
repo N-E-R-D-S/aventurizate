@@ -27,7 +27,12 @@
             {% endif %}
         </figure>
     {% empty %}
-        <p>No hay fotos disponibles para esta especie.</p>
+        <figure>
+            <img src="{% static 'images/no_bird_photo.jpg' %}" alt="Sin foto disponible">
+            {% if photo.description %}
+                <figcaption>{{ photo.description }}</figcaption>
+            {% endif %}
+        </figure>
     {% endfor %}
 </div>
 {% endblock %}
