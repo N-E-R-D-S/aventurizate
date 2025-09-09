@@ -1,25 +1,56 @@
 from django.db import models
 
 
-class BookingStatus(models.Model):
-    """Catálogo de estados posibles para una reserva"""
-    name = models.CharField(max_length=50, unique=True)
-    description = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.name
-
-
-class Booking(models.Model):
-    """Reserva de un turista con guía o institución"""
-    tourist = models.ForeignKey("Tourist", on_delete=models.CASCADE)
+class Tour(models.Model):
+    """
+    Representa un tour o visita guiada creado por un guía.
+    """
     guide = models.ForeignKey(
-        "Guide", on_delete=models.SET_NULL, null=True, blank=True)
-    reserve = models.ForeignKey("Reserve", on_delete=models.CASCADE)
-    date = models.DateField()
+        "accounts.GuideProfile",
+        on_delete=models.CASCADE,
+        related_name="tours"
+    )
+    name = models.CharField(max_length=150)
+    description = models.TextField(blank=True)
+    date = models.DateTimeField()
+    max_participants = models.PositiveIntegerField()
+    price = models.DecimalField(
+        max_digits=8, decimal_places=2, null=True, blank=True
+    )
+    published = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    status = models.ForeignKey(BookingStatus, on_delete=models.PROTECT)
+    class Meta:
+        ordering = ["-date"]
+        unique_together = ("guide", "name", "date")
+
+    def spots_taken(self):
+        """Cantidad de participantes ya reservados."""
+        return self.reservations.filter(is_confirmed=True).count()
+
+    def spots_available(self):
+        """Cupo restante disponible."""
+        return self.max_participants - self.spots_taken()
 
     def __str__(self):
-        return f"Reserva {self.id} - {self.tourist} ({self.status})"
+        return f"{self.name} ({self.reserve.name})"
+
+
+class TourReservation(models.Model):
+    """
+    Representa la reserva de un turista en un tour.
+    """
+
+    tour = models.ForeignKey(
+        Tour, on_delete=models.CASCADE, related_name="reservations")
+    tourist = models.ForeignKey(
+        "accounts.TouristProfile", on_delete=models.CASCADE, related_name="tour_reservations")
+    is_confirmed = models.BooleanField(default=False)
+    reserved_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("tour", "tourist")
+        ordering = ["-reserved_at"]
+
+    def __str__(self):
+        return f"Reserva de {self.tourist.user.username} en {self.tour.name} ({self.status})"
