@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+<h1>{{ bird.common_name }}</h1>
+<p><em>{{ bird.scientific_name }}</em></p>
+
+{% if bird.iucn_red_list_category %}
+    <p><strong>Estado UICN:</strong> {{ bird.iucn_red_list_category.name }}</p>
+{% endif %}
+
+<p>{{ bird.description }}</p>
+
+<h3>Clasificación científica</h3>
+<ul>
+    <li><strong>Orden:</strong> {{ bird.genus.family.order.name }}</li>
+    <li><strong>Familia:</strong> {{ bird.genus.family.name }}</li>
+    <li><strong>Género:</strong> {{ bird.genus.name }}</li>
+</ul>
+
+<h3>Fotos</h3>
+<div>
+    {% for photo in photos %}
+        <figure>
+            <img src="{{ photo.image.url }}" alt="{{ photo.description }}">
+            {% if photo.description %}
+                <figcaption>{{ photo.description }}</figcaption>
+            {% endif %}
+        </figure>
+    {% empty %}
+        <figure>
+            <img src="{% static 'images/no_bird_photo.png' %}" alt="Sin foto disponible">
+            {% if photo.description %}
+                <figcaption>{{ photo.description }}</figcaption>
+            {% endif %}
+        </figure>
+    {% endfor %}
+</div>
+{% endblock %}

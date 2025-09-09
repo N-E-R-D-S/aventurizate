@@ -1,25 +1,8 @@
 from django.db import models
 from django.conf import settings
+from django.utils.text import slugify
 
 User = settings.AUTH_USER_MODEL
-
-
-class Type(models.Model):
-    """Tipo de ave: endémica o migratoria"""
-    name = models.CharField(max_length=50, unique=True)
-    description = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.name
-
-
-class Habitat(models.Model):
-    """Hábitat donde se encuentra el ave"""
-    name = models.CharField(max_length=100, unique=True)
-    description = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.name
 
 
 class IUCNRedListCategory(models.Model):
@@ -75,9 +58,18 @@ class Species(models.Model):
     genus = models.ForeignKey(
         Genus, on_delete=models.PROTECT)
     description = models.TextField(blank=True)
-    type = models.ForeignKey(
-        Type, on_delete=models.PROTECT, null=True, blank=True)
-    habitats = models.ManyToManyField(Habitat, blank=True)
+    slug = models.SlugField(max_length=220, unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.common_name)
+            slug = base_slug
+            counter = 1
+            while Species.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.common_name} ({self.scientific_name})"
@@ -92,36 +84,3 @@ class Photo(models.Model):
 
     def __str__(self):
         return f"Foto de {self.bird.common_name}"
-
-
-class Observation(models.Model):
-    """Registro de avistamiento (occurrence)"""
-    bird = models.ForeignKey(Species, on_delete=models.CASCADE)
-    observer = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, blank=True
-    )
-    photos = models.ManyToManyField(Photo, blank=True)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
-    date_observed = models.DateField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    count = models.PositiveIntegerField(default=1)
-    note = models.TextField(blank=True)
-    gbif_id = models.CharField(max_length=50, blank=True, null=True)
-
-    class Meta:
-        ordering = ["-date_observed"]
-
-    def __str__(self):
-        return f"{self.bird.common_name} observado el {self.date_observed}"
-
-
-class DistributionMap(models.Model):
-    """Mapa de distribución de un ave"""
-    bird = models.ForeignKey(Species, on_delete=models.CASCADE)
-    map_image = models.ImageField(upload_to="birds/maps/")
-    description = models.CharField(max_length=200, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Mapa de {self.bird.common_name}"
