@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Tours disponibles</h1>
+
+{% if tours %}
+    <ul>
+    {% for tour in tours %}
+        <li>
+            <strong>{{ tour.name }}</strong><br>
+            Fecha: {{ tour.date }}<br>
+            Cupo disponible: {{ tour.spots_available }}<br>
+            Guía: {{ tour.guide.user.username }}<br>
+            <a href="{% url 'tour_detail' tour.id %}">Ver mas</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay tours disponibles en este momento.</p>
+{% endif %}
+
+{% endblock %}

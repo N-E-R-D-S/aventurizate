@@ -33,7 +33,7 @@ class Tour(models.Model):
         return self.max_participants - self.spots_taken()
 
     def __str__(self):
-        return f"{self.name} ({self.reserve.name})"
+        return self.name
 
 
 class TourReservation(models.Model):

@@ -7,21 +7,24 @@ from .models import User, TouristProfile, GuideProfile
 
 # Create your views here.
 
+
 def login_view(request):
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("dashboard")
+            return redirect("bird_list")
     else:
         form = AuthenticationForm()
     context = {"form": form}
     return render(request, "login.html", context)
 
+
 def logout_view(request):
     logout(request)
     return redirect("login")
+
 
 def register_view(request):
     if request.method == "POST":
@@ -48,7 +51,7 @@ def register_view(request):
                 tourist = TouristProfile.objects.create(user=user)
                 tourist.save()
                 Group.objects.get(name='Tourist').user_set.add(user)
-            if user_type == "guide": 
+            if user_type == "guide":
                 guide = GuideProfile.objects.create(user=user)
                 guide.save()
                 Group.objects.get(name='Guide').user_set.add(user)
