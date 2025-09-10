@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>{{ tour.name }}</h1>
+<p><strong>Guía:</strong> {{ tour.guide.user.username }}</p>
+<p><strong>Descripción:</strong> {{ tour.description }}</p>
+<p><strong>Fecha:</strong> {{ tour.date }}</p>
+<p><strong>Cupo máximo:</strong> {{ tour.max_participants }}</p>
+<p><strong>Cupos disponibles:</strong> {{ spots_available }}</p>
+<p><strong>Reservados:</strong> {{ spots_taken }}</p>
+{% if tour.price %}
+    <p><strong>Precio:</strong> ${{ tour.price }}</p>
+{% endif %}
+
+{% if user.is_authenticated and user.is_tourist %}
+    <a href="{% url 'reserve_tour' tour.id %}">Reservar este tour</a>
+{% endif %}
+
+{% endblock %}

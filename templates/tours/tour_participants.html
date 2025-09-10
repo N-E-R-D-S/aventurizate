@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Participantes del tour: {{ tour.name }}</h1>
+
+{% if participants %}
+    <ul>
+    {% for r in participants %}
+        <li>{{ r.tourist.user.username }} - {% if r.is_confirmed %}Confirmada{% else %}Pendiente{% endif %}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay participantes en este tour todavía.</p>
+{% endif %}
+
+{% endblock %}
