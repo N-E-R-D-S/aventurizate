@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Bienvenido a Aventurízate</h1>
+
+{% if random_bird %}
+    <h2>Ave destacada</h2>
+    <p>{{ random_bird.common_name }} ({{ random_bird.scientific_name }})</p>
+    <p>{{ random_bird.description }}</p>
+{% endif %}
+
+{% if random_tour %}
+    <h2>Tour destacado</h2>
+    <p>{{ random_tour.name }} por {{ random_tour.guide.user.username }}</p>
+    <p>{{ random_tour.description }}</p>
+    <p>Fecha: {{ random_tour.date }}</p>
+{% endif %}
+
+{% if random_reserve %}
+    <h2>Reserva natural destacada</h2>
+    <p>{{ random_reserve.name }}</p>
+    <p>{{ random_reserve.description }}</p>
+{% endif %}
+
+{% endblock %}
