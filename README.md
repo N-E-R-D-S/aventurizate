@@ -155,10 +155,24 @@ python manage.py runserver
 - **Ileana Ruiz** – Diseño Gráfico y UX
 - **Nelson Córdoba** – Desarrollador Frontend
 
-## 💡 Sobre el Proyecto
+## 🚀 Sobre el Hackathon
 
-Este proyecto participa en el **Hackathon Nicaragua 2025**, bajo el reto de **Turismo**.
-Buscamos aportar al **desarrollo sostenible**, la **conservación de ecosistemas** y el **fortalecimiento de economías locales** a través del aviturismo.
+Este proyecto fue desarrollado como parte del Hackathon Nicaragua, el evento de innovación tecnológica más grande del país que reúne a desarrolladores, diseñadores y emprendedores para crear soluciones digitales que respondan a desafíos reales de Nicaragua en un tiempo limitado.
+El objetivo del hackathon es fomentar la creatividad, el trabajo colaborativo y el desarrollo de propuestas con impacto social, económico y ambiental.
+
+## 🦜 ¿Por qué elegimos el reto de Aviturismo?
+
+Nicaragua cuenta con una enorme riqueza natural y biodiversidad, especialmente en aves, que representan una oportunidad única para impulsar el ecoturismo y el desarrollo local. Sin embargo, esta potencialidad muchas veces no está articulada digitalmente, lo que limita su visibilidad y acceso.
+
+Decidimos abordar el reto de "Plataforma de aviturismo" porque:
+
+🌿 Queremos promocionar las áreas protegidas y la observación de aves como un producto turístico sostenible y atractivo.
+
+📲 Buscamos centralizar en una plataforma amigable la información sobre especies, reservas, guías y tours, facilitando la planificación de experiencias para turistas nacionales e internacionales.
+
+💼 Apoyamos la economía local al conectar directamente a guías certificados y operadores de turismo con visitantes interesados.
+
+Con Aventurízate, no solo construimos una herramienta tecnológica, sino que contribuimos a posicionar a Nicaragua como un destino de naturaleza de clase mundial —potenciando el turismo responsable y el orgullo por nuestra biodiversidad.
 
 ## 📌 Próximos Pasos
 
