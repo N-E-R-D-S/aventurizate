@@ -53,39 +53,6 @@ Además, permite gestionar reservas de tours especializados, promueve buenas pr�
 - **Frontend:** HTML, CSS, JavaScript (AlpineJS)
 - **Otros:** Django Admin, manejo de imágenes, SlugField, mapas (por integrar)
 
-## 🧩 Módulos y Modelos
-
-### `accounts/` - Usuarios y Perfiles
-
-**Modelos:**
-
-- `User` (hereda de `AbstractUser`) – Maneja credenciales, roles, idiomas y biografía.
-- `TouristProfile` – Perfil con país de origen.
-- `GuideProfile` – Perfil con teléfono, años de experiencia y calificación.
-- `Language`, `Country` – Idiomas y países disponibles.
-
-### `birds/` - Aves
-
-**Modelos:**
-
-- `IUCNRedListCategory` – Categoría de conservación.
-- `Order`, `Family`, `Genus`, `Species` – Estructura taxonómica.
-- `Photo` – Imágenes asociadas a aves.
-
-### `reserves/` - Reservas Naturales
-
-**Modelos:**
-
-- `Reserve` – Nombre, descripción, ubicación, aves asociadas.
-- `ReservePhoto` – Galería de imágenes por reserva.
-
-### `tours/` - Tours y Reservas
-
-**Modelos:**
-
-- `Tour` – Guía, nombre, descripción, fecha, cupo, precio y publicación.
-- `TourReservation` – Turista, tour, confirmación y fecha de reserva.
-
 ## 🔗 Relaciones Clave entre Apps
 
 - `User` ↔ `TouristProfile` / `GuideProfile`
