@@ -3,8 +3,6 @@
 ¡Gracias por tu interés en contribuir a **Aventurízate**! 🎉  
 Este proyecto promueve el turismo sostenible y el aviturismo en Nicaragua a través de la tecnología. Todas las contribuciones, grandes o pequeñas, son bienvenidas.
 
----
-
 ## 📌 Requisitos Previos
 
 Antes de contribuir, asegúrate de tener:
@@ -17,8 +15,6 @@ Antes de contribuir, asegúrate de tener:
   choco install git-flow-avh       # Windows (Chocolatey)
   ```
 
----
-
 ## 🌿 Estrategia de Ramas con Git Flow
 
 Seguimos el modelo de **Git Flow**:
@@ -28,8 +24,6 @@ Seguimos el modelo de **Git Flow**:
 - `feature/*` → Nuevas funcionalidades o mejoras.
 - `release/*` → Versiones preliminares para pruebas.
 - `hotfix/*` → Correcciones rápidas en producción.
-
----
 
 ## 🚀 Cómo Contribuir
 
@@ -78,35 +72,12 @@ git flow hotfix start <nombre-correcion>
 git flow hotfix finish <nombre-correcion>
 ```
 
----
-
-## 📝 Mensajes de Commit
-
-Usa mensajes claros y consistentes:
-
-- `feat: <descripción>` → Nueva funcionalidad
-- `fix: <descripción>` → Corrección de error
-- `docs: <descripción>` → Actualización de documentación
-- `refactor: <descripción>` → Reestructuración de código
-- `style: <descripción>` → Estilo o formato de código
-- `test: <descripción>` → Pruebas agregadas o actualizadas
-
-Ejemplo:
-
-```
-feat: agregar filtro de especies de aves por región
-```
-
----
-
 ## ✅ Pull Requests
 
 - Crea **pull requests hacia la rama `develop` solamente**.
 - Asegúrate de que tu rama esté **actualizada con `develop`** antes de abrir un PR.
 - Incluye una **descripción de los cambios** y referencia cualquier issue relacionado.
 - Solicita revisión de al menos **un miembro del equipo**.
-
----
 
 ## 💡 Directrices Adicionales
 
