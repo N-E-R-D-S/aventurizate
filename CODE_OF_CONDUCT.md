@@ -2,13 +2,13 @@
 
 ## Nuestra Promesa
 
-Con el interés de fomentar una comunidad abierta y acogedora, como contribuyentes y administradores de este proyecto, nos comprometemos a hacer de la participación en nuestro proyecto y en nuestra comunidad una experiencia libre de acoso para todos, sin importar edad, tamaño corporal, discapacidad visible o invisible, origen étnico, características sexuales, identidad y expresión de género, nivel de experiencia, educación, situación socioeconómica, nacionalidad, apariencia personal, raza, religión o identidad u orientación sexual.
+Con el interés de fomentar una comunidad abierta y acogedora, como contribuyentes y administradores de este proyecto, nos comprometemos a hacer de la participación en nuestro proyecto y en nuestra comunidad una experiencia libre de acoso para todos.
 
 ## Nuestros Estándares
 
 Ejemplos de comportamientos que contribuyen a crear un ambiente positivo incluyen:
 
-- Usar un lenguaje acogedor e inclusivo
+- Usar un lenguaje acogedor
 - Ser respetuoso con diferentes puntos de vista y experiencias
 - Aceptar críticas constructivas con gracia
 - Centrarse en lo que es mejor para la comunidad
@@ -34,7 +34,7 @@ Este Código de Conducta se aplica tanto dentro de los espacios del proyecto com
 
 ## Cumplimiento
 
-Los casos de comportamiento abusivo, acosador o inaceptable pueden ser reportados contactando al equipo del proyecto en **[tu correo de contacto aquí]**. Todas las quejas serán revisadas e investigadas y resultarán en una respuesta que se considere necesaria y apropiada a las circunstancias.
+Los casos de comportamiento abusivo, acosador o inaceptable pueden ser reportados contactando al equipo del proyecto en https://github.com/N-E-R-D-S/aventurizate/issues. Todas las quejas serán revisadas e investigadas y resultarán en una respuesta que se considere necesaria y apropiada a las circunstancias.
 
 Los administradores del proyecto están obligados a mantener la confidencialidad con respecto al informante de un incidente.
 

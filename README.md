@@ -1,149 +1,80 @@
 # 🌎 Aventurízate
 
-**Plataforma de Aviturismo y Reservas Naturales de Nicaragua**  
+**Plataforma de Aviturismo de Nicaragua**
 _Hackathon Nicaragua 2025 - Reto Turismo_
 
-**Aventurízate** es un proyecto que busca impulsar el **aviturismo** como motor económico sostenible y herramienta de conservación en Nicaragua.
+**Aventurízate** es una plataforma web innovadora diseñada para potenciar el **aviturismo** en Nicaragua, integrando **conservación**, **turismo sostenible** y **desarrollo económico local**.
 
-La aplicación permitirá **promocionar reservas naturales**, **centralizar información de especies de aves**, y **conectar a turistas con guías locales certificados**, fomentando el ecoturismo responsable.
+Conecta a turistas nacionales e internacionales con guías locales, facilita la exploración de reservas naturales protegidas y ofrece un catálogo digital completo de aves endémicas y migratorias, con información detallada, fotografías y mapas de distribución.
 
-El proyecto busca impulsar el **aviturismo** como motor económico sostenible y herramienta de conservación en Nicaragua.
-
----
+Además, permite gestionar reservas de tours especializados, promueve buenas prácticas de observación y contribuye a la educación ambiental, posicionándose como la herramienta definitiva para amantes de la naturaleza y profesionales del ecoturismo.
 
 ## 🚀 Objetivos
 
-- Promover el **turismo sostenible** y la **conservación de la biodiversidad** en Nicaragua.
-- Facilitar la **observación de aves** y actividades ecoturísticas a turistas nacionales e internacionales.
-- Brindar un **espacio digital accesible** para operadores locales, investigadores y aficionados al aviturismo.
+- Promover el **turismo sostenible** y la **conservación de la biodiversidad**.
+- Facilitar la **observación de aves** y actividades ecoturísticas.
+- Crear un espacio digital inclusivo para turistas, guías y operadores locales.
 
----
+## ✨ Funcionalidades del MVP
 
-## ✨ Funcionalidades Principales (TODO)
+### 1. Gestión de usuarios
 
-1. **Registro de usuario** (turistas, guías locales, operadores).
-2. **Catálogo digital de aves** endémicas y migratorias con fotografías, descripciones y mapas de distribución.
-3. **Información de reservas naturales** habilitadas para actividades de ecoturismo.
-4. **Calendario de temporadas y eventos**: avistamiento de aves, festivales y conteos ciudadanos.
-5. **Sistema de reservas en línea** para contratar guías locales certificados y servicios complementarios.
-6. **Módulo educativo** con recursos de conservación y buenas prácticas ambientales.
+- Registro e inicio de sesión para turistas y guías.
+- Perfiles con datos personales, idiomas y país de origen.
+- Roles definidos: **Turista** y **Guía**.
 
----
+### 2. Catálogo de aves
+
+- Listado de especies con nombre común, científico, descripción y fotografías.
+- Información taxonómica (orden, familia, género).
+- Clasificación por categoría de la Lista Roja UICN.
+
+### 3. Reservas naturales
+
+- Visualización de reservas con ubicación y descripción.
+- Aves observables en cada reserva.
+
+### 4. Tours y visitas guiadas
+
+- Guías pueden publicar tours indicando fecha, cupo y precio.
+- Turistas pueden explorar y reservar tours disponibles.
+- Confirmación visual de reservas.
+
+### 5. Reservas de tours
+
+- Sistema de confirmación de participación para turistas.
+- Visualización de participantes por tour (para guías).
+- Historial de reservas para cada usuario.
 
 ## 🛠️ Tecnologías
 
 - **Backend:** Django (Python)
-- **Base de datos:** SQLite (modo desarrollo), PostgreSQL (modo producción)
-- **Frontend:** HTML, CSS, JavaScript/AlpineJS
-- **Otros:** Librerías de geolocalización y mapas para distribución de especies (Pendiente escoger)
+- **Base de datos:** SQLite (desarrollo), PostgreSQL (producción)
+- **Frontend:** HTML, CSS, JavaScript (AlpineJS)
+- **Otros:** Django Admin, manejo de imágenes, SlugField, mapas (por integrar)
 
----
+## 🔗 Relaciones Clave entre Apps
 
-## 📌 Próximos Pasos
-
-- [ ] Definir modelos iniciales (Usuarios, Aves, Reservas, Eventos, Guías).
-- [ ] Implementar autenticación y registro de usuarios.
-- [ ] Diseñar catálogo inicial de aves en base de datos.
-- [ ] Configurar vistas y primeras plantillas.
-- [ ] Preparar prototipo funcional para pruebas en el hackathon.
-
----
-
-## 👥 Equipo
-
-- **Deybis Melendez** – Líder, Desarrollador
-- **Junieth Soza** – Marketing y Comunicación
-- **Ileana Ruiz** – Diseño Gráfico
-- **Nelson Córdoba** – Desarrollador
-
----
-
-## 🤝 Equipo & Comunidad
-
-Este proyecto forma parte del **Hackathon Nicaragua 2025**, en la categoría de **Turismo**.  
-Buscamos que esta plataforma sea un aporte al **desarrollo sostenible**, la **conservación ambiental** y el **fortalecimiento de la economía local** a través del aviturismo.
-
-## 📂 Descripción de Apps y Modelos (En Desarrollo)
-
-### 1. `accounts/`
-
-🔑 Manejo de usuarios y roles.
-**Modelos:**
-
-- `User` (extiende `AbstractUser`, con roles: tourist, guide, operator).
-- `Profile` (información adicional de cada usuario).
-
----
-
-### 2. `birds/`
-
-🐦 Catálogo digital de aves.
-**Modelos:**
-
-- `Bird` → common_name, scientific_name, description, photo, category, distribution.
-
----
-
-### 3. `reserves/`
-
-🌳 Reservas naturales habilitadas para el aviturismo.
-**Modelos:**
-
-- `Reserve` → name, location, description, activities, photos.
-
----
-
-### 4. `events/`
-
-📅 Temporadas y eventos especiales.
-**Modelos:**
-
-- `Event` → title, date, location, type (festival, citizen_count, season), description.
-
----
-
-### 5. `bookings/`
-
-🎟️ Sistema de reservas (turistas ↔ guías).
-**Modelos:**
-
-- `Booking` → user (turista), guide, reserve, date, status.
-
----
-
-### 6. `education/`
-
-📘 Módulo educativo sobre conservación.
-**Modelos:**
-
-- `Article` → title, content, category, image, published_date.
-
----
-
-## 🔗 Relaciones entre Apps
-
-- `accounts.User` ↔ `bookings.Booking` (turista hace una reserva).
-- `accounts.User` (guide) ↔ `bookings.Booking` (guía asignado).
-- `birds.Bird` ↔ `reserves.Reserve` (aves observables en una reserva).
-- `events.Event` ↔ `reserves.Reserve` (dónde ocurre el evento).
-
----
+- `User` ↔ `TouristProfile` / `GuideProfile`
+- `Species` ↔ `Reserve` (ManyToMany)
+- `GuideProfile` ↔ `Tour`
+- `Tour` ↔ `TourReservation` ↔ `TouristProfile`
 
 ## ⚡ Cómo Ejecutar Localmente
 
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/deybismelendez/aveturizate.git
+git clone https://github.com/N-E-R-D-S/aventurizate.git
 cd aveturizate
 ```
 
-### 2. Crear y activar un entorno virtual
+### 2. Crear y activar entorno virtual
 
 ```bash
-python -m venv venv
-source venv/bin/activate    # En Linux/Mac
-venv\Scripts\activate       # En Windows
+python -m venv .env
+source .env/bin/activate    # Linux/Mac
+venv\Scripts\activate       # Windows
 ```
 
 ### 3. Instalar dependencias
@@ -158,28 +89,54 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 
-### 5. Inicializar grupos, idiomas y países por default.
+### 5. Inicializar datos base (idiomas, países, grupos)
 
 ```bash
 python manage.py init_accounts
 ```
 
-### 6. Generar catálogo de aves con GBIF API (Opcional).
+### 6. Cargar especies de aves desde GBIF (opcional)
 
 ```bash
 python manage.py load_species
 ```
 
-### 7. Crear un superusuario (opcional, para entrar al admin)
+### 7. Crear superusuario (opcional)
 
 ```bash
 python manage.py createsuperuser
 ```
 
-### 8. Ejecutar el servidor local
+### 8. Ejecutar servidor local
 
 ```bash
 python manage.py runserver
 ```
 
-👉 Accede en tu navegador a: http://localhost:8000
+👉 Accede en tu navegador a: [http://localhost:8000](http://localhost:8000)
+
+## 👥 Equipo
+
+- **Deybis Meléndez** – Líder, Desarrollador FullStack
+- **Junieth Soza** – Marketing y Comunicación
+- **Ileana Ruiz** – Diseño Gráfico y UX
+- **Nelson Córdoba** – Desarrollador Frontend
+
+## 🚀 Sobre el Hackathon
+
+Este proyecto fue desarrollado como parte del Hackathon Nicaragua, el evento de innovación tecnológica más grande del país que reúne a desarrolladores, diseñadores y emprendedores para crear soluciones digitales que respondan a desafíos reales de Nicaragua en un tiempo limitado.
+El objetivo del hackathon es fomentar la creatividad, el trabajo colaborativo y el desarrollo de propuestas con impacto social, económico y ambiental.
+
+## 🦜 ¿Por qué elegimos el reto de Aviturismo?
+
+Nicaragua cuenta con una enorme riqueza natural y biodiversidad, especialmente en aves, que representan una oportunidad única para impulsar el ecoturismo y el desarrollo local. Sin embargo, esta potencialidad muchas veces no está articulada digitalmente, lo que limita su visibilidad y acceso.
+
+Decidimos abordar el reto de "Plataforma de aviturismo" porque:
+
+🌿 Queremos promocionar las áreas protegidas y la observación de aves como un producto turístico sostenible y atractivo.
+
+📲 Buscamos centralizar en una plataforma amigable la información sobre especies, reservas, guías y tours, facilitando la planificación de experiencias para turistas nacionales e internacionales.
+
+💼 Apoyamos la economía local al conectar directamente a guías certificados y operadores de turismo con visitantes interesados.
+
+Con Aventurízate, no solo construimos una herramienta tecnológica, sino que contribuimos a posicionar a Nicaragua como un destino de naturaleza de clase mundial —potenciando el turismo responsable y el orgullo por nuestra biodiversidad.
