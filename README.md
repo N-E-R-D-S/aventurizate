@@ -3,8 +3,11 @@
 **Plataforma de Aviturismo de Nicaragua**
 _Hackathon Nicaragua 2025 - Reto Turismo_
 
-**Aventurízate** es una plataforma web que impulsa el **aviturismo** como motor económico sostenible y herramienta de conservación en Nicaragua.
-Conecta a turistas y guías locales certificados, promueve reservas naturales y ofrece un catálogo detallado de aves endémicas y migratorias.
+**Aventurízate** es una plataforma web innovadora diseñada para potenciar el **aviturismo** en Nicaragua, integrando **conservación**, **turismo sostenible** y **desarrollo económico local**.
+
+Conecta a turistas nacionales e internacionales con guías locales, facilita la exploración de reservas naturales protegidas y ofrece un catálogo digital completo de aves endémicas y migratorias, con información detallada, fotografías y mapas de distribución.
+
+Además, permite gestionar reservas de tours especializados, promueve buenas prácticas de observación y contribuye a la educación ambiental, posicionándose como la herramienta definitiva para amantes de la naturaleza y profesionales del ecoturismo.
 
 ## 🚀 Objetivos
 
