@@ -13,7 +13,33 @@ def create_tour(request):
         return redirect("tour_list")
 
     if request.method == "POST":
-        pass
+        name = request.POST.get("name")
+        description = request.POST.get("description")
+        date = request.POST.get("date")
+        max_participants = request.POST.get("max_participants")
+        price = request.POST.get("price") or 0
+        if not all([name, description, date, max_participants]):
+            messages.error(request, "Todos los campos excepto el precio son obligatorios.")
+            return render(request, "tours/create_tour.html")
+
+        try:
+            date = timezone.datetime.fromisoformat(date)
+            max_participants = int(max_participants)
+            price = float(price)
+        except ValueError:
+            messages.error(request, "Datos inválidos. Por favor verifica los campos.")
+            return render(request, "tours/create_tour.html")
+
+        new_tour = Tour.objects.create(
+            name=name,
+            description=description,
+            date=date,
+            max_participants=max_participants,
+            price=price,
+            guide=request.user.get_profile()
+        )
+        messages.success(request, "Tour creado con éxito.")
+        return redirect("tour_detail", tour_id=new_tour.id)
 
     return render(request, "tours/create_tour.html")
 
@@ -32,6 +58,17 @@ def tour_detail(request, tour_id):
     }
     return render(request, "tours/tour_detail.html", context)
 
+@login_required
+def my_tours(request):
+    if not request.user.is_guide():
+        messages.error(request, "Solo los guías pueden ver sus tours.")
+        return redirect("tour_list")
+
+    tours = Tour.objects.filter(guide__user=request.user)
+    context = {
+        "tours": tours
+    }
+    return render(request, "tours/my_tours.html", context)
 
 @login_required
 def reserve_tour(request, tour_id):
@@ -70,7 +107,7 @@ def my_reservations(request):
     context = {
         "reservations": reservations
     }
-    return render(request, "bookings/my_reservations.html", context)
+    return render(request, "tours/my_reservations.html", context)
 
 
 @login_required
