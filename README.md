@@ -140,11 +140,3 @@ Decidimos abordar el reto de "Plataforma de aviturismo" porque:
 💼 Apoyamos la economía local al conectar directamente a guías certificados y operadores de turismo con visitantes interesados.
 
 Con Aventurízate, no solo construimos una herramienta tecnológica, sino que contribuimos a posicionar a Nicaragua como un destino de naturaleza de clase mundial —potenciando el turismo responsable y el orgullo por nuestra biodiversidad.
-
-## 📌 Próximos Pasos
-
-- [ ] Integrar mapas de distribución por especie.
-- [ ] Módulo educativo y de eventos (festivales, conteos).
-- [ ] Implementar filtros avanzados en catálogos.
-- [ ] Soporte multilenguaje básico.
-- [ ] Sistema de valoraciones y comentarios para tours y guías.
