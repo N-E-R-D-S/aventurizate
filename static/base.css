@@ -1,0 +1,188 @@
+/* Importar tipografías */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&family=Montserrat:wght@700&display=swap');
+
+:root {
+    /* Paleta de colores */
+    --color-turquoise: #1CA49B;
+    --color-green: #6E9B3C;
+    --color-orange: #FD9A2E;
+    --color-black: #1A1A1A;
+    --color-white: #ffffff;
+    --color-gray-light: #f5f5f5;
+
+    /* Tipografía */
+    --font-title: 'Montserrat', sans-serif;
+    --font-body: 'Lato', sans-serif;
+
+    /* Espaciado */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 3rem;
+
+    /* Bordes */
+    --radius: 8px;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body.page {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-black);
+    background-color: var(--color-white);
+}
+
+/* Titulos */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-title);
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+}
+
+p {
+    margin-bottom: var(--space-sm);
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: var(--color-turquoise);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-orange);
+}
+
+/* ==============================
+   Header & Nav (BEM)
+   ============================== */
+.header {
+    background-color: var(--color-turquoise);
+    padding: var(--space-sm) var(--space-md);
+}
+
+.nav {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav__list {
+    display: flex;
+    gap: var(--space-sm);
+    list-style: none;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.nav__item {}
+
+.nav__link {
+    color: var(--color-white);
+    font-weight: 600;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius);
+    transition: background-color 0.3s ease;
+}
+
+.nav__link:hover,
+.nav__link:focus {
+    background-color: var(--color-green);
+    color: var(--color-white);
+}
+
+/* ==============================
+   Main Sections
+   ============================== */
+.page__main {
+    max-width: 1200px;
+    margin: var(--space-lg) auto;
+    padding: 0 var(--space-md);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.hero__title {
+    font-size: 2rem;
+    color: var(--color-turquoise);
+}
+
+/* Highlight Sections */
+.highlight {
+    background-color: var(--color-gray-light);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    border-left: 6px solid var(--color-turquoise);
+    border-radius: var(--radius);
+}
+
+.highlight--bird {
+    border-left-color: var(--color-green);
+}
+
+.highlight--tour {
+    border-left-color: var(--color-orange);
+}
+
+.highlight--reserve {
+    border-left-color: var(--color-turquoise);
+}
+
+.highlight__title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-sm);
+    color: var(--color-black);
+}
+
+.highlight__subtitle {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-xs);
+    color: var(--color-turquoise);
+}
+
+.highlight__scientific {
+    font-style: italic;
+    color: var(--color-green);
+}
+
+.highlight__text {
+    color: var(--color-black);
+    margin-bottom: var(--space-xs);
+}
+
+.highlight__date {
+    font-size: 0.9rem;
+    color: var(--color-orange);
+}
+
+/* ==============================
+   Footer
+   ============================== */
+.footer {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    text-align: center;
+    padding: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.footer__text {
+    font-size: 0.9rem;
+}
