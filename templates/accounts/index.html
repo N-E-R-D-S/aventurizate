@@ -1,25 +1,38 @@
-{% extends "layout.html" %}
-
-{% block body %}
-<h1>Bienvenido a Aventurízate</h1>
+{% extends "layout.html" %} {% block body %}
+<section class="hero">
+  <h1 class="hero__title">Bienvenido a Aventurízate</h1>
+</section>
 
 {% if random_bird %}
-    <h2>Ave destacada</h2>
-    <p>{{ random_bird.common_name }} ({{ random_bird.scientific_name }})</p>
-    <p>{{ random_bird.description }}</p>
-{% endif %}
-
-{% if random_tour %}
-    <h2>Tour destacado</h2>
-    <p>{{ random_tour.name }} por {{ random_tour.guide.user.username }}</p>
-    <p>{{ random_tour.description }}</p>
-    <p>Fecha: {{ random_tour.date }}</p>
-{% endif %}
-
-{% if random_reserve %}
-    <h2>Reserva natural destacada</h2>
-    <p>{{ random_reserve.name }}</p>
-    <p>{{ random_reserve.description }}</p>
-{% endif %}
-
-{% endblock %}
+<section class="highlight highlight--bird">
+  <h2 class="highlight__title">Ave destacada</h2>
+  <article class="highlight__content">
+    <h3 class="highlight__subtitle">
+      {{ random_bird.common_name }}
+      <span class="highlight__scientific"
+        >({{ random_bird.scientific_name }})</span
+      >
+    </h3>
+    <p class="highlight__text">{{ random_bird.description }}</p>
+  </article>
+</section>
+{% endif %} {% if random_tour %}
+<section class="highlight highlight--tour">
+  <h2 class="highlight__title">Tour destacado</h2>
+  <article class="highlight__content">
+    <h3 class="highlight__subtitle">
+      {{ random_tour.name }} por {{ random_tour.guide.user.username }}
+    </h3>
+    <p class="highlight__text">{{ random_tour.description }}</p>
+    <p class="highlight__date">Fecha: {{ random_tour.date }}</p>
+  </article>
+</section>
+{% endif %} {% if random_reserve %}
+<section class="highlight highlight--reserve">
+  <h2 class="highlight__title">Reserva natural destacada</h2>
+  <article class="highlight__content">
+    <h3 class="highlight__subtitle">{{ random_reserve.name }}</h3>
+    <p class="highlight__text">{{ random_reserve.description }}</p>
+  </article>
+</section>
+{% endif %} {% endblock %}

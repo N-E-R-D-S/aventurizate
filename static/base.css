@@ -186,3 +186,132 @@ a:hover {
 .footer__text {
     font-size: 0.9rem;
 }
+
+
+/* ==============================
+   Formularios de Auth
+   ============================== */
+.auth {
+    max-width: 400px;
+    margin: var(--space-lg) auto;
+    padding: var(--space-md);
+    background-color: var(--color-gray-light);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auth__title {
+    text-align: center;
+    margin-bottom: var(--space-md);
+    color: var(--color-turquoise);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.form__label {
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.form__input,
+.form__select {
+    padding: var(--space-xs);
+    border: 1px solid #ddd;
+    border-radius: var(--radius);
+    font-size: 1rem;
+}
+
+.button {
+    padding: var(--space-sm);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+}
+
+.button--primary {
+    background-color: var(--color-turquoise);
+    color: var(--color-white);
+    transition: background-color 0.3s ease;
+}
+
+.button--primary:hover {
+    background-color: var(--color-green);
+}
+
+/* ==============================
+   Bird List
+   ============================== */
+.birds {
+    max-width: 1200px;
+    margin: var(--space-lg) auto;
+    padding: 0 var(--space-md);
+}
+
+.birds__title {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    color: var(--color-turquoise);
+}
+
+.birds__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--space-md);
+}
+
+.bird-card {
+    background-color: var(--color-white);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.bird-card__image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.bird-card__body {
+    padding: var(--space-sm);
+}
+
+.bird-card__title {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-xs);
+}
+
+.bird-card__scientific {
+    font-style: italic;
+    margin-bottom: var(--space-sm);
+    color: var(--color-green);
+}
+
+.bird-card__link {
+    color: var(--color-orange);
+    font-weight: 600;
+}
+
+/* Paginación */
+.pagination {
+    text-align: center;
+    margin-top: var(--space-lg);
+}
+
+.pagination__link {
+    margin: 0 var(--space-xs);
+    color: var(--color-turquoise);
+    font-weight: 600;
+}
+
+.pagination__info {
+    margin: 0 var(--space-sm);
+}
