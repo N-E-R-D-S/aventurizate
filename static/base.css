@@ -70,7 +70,8 @@ a:hover {
 /* ==============================
    Header & Nav (BEM)
    ============================== */
-.header {
+
+   .header {
     background-color: var(--color-turquoise);
     padding: var(--space-sm) var(--space-md);
 }
