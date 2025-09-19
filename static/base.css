@@ -371,3 +371,53 @@ form button {
 form button:hover {
     background: #6E9B3C;
 }
+
+
+/* ============================
+   Mis Tours (my_tours.html)
+=============================== */
+.tours-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.tours-list li {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tours-list li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.tours-list h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: #1CA49B;
+}
+
+.tours-list p {
+    margin: 0.4rem 0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.tours-list a {
+    display: inline-block;
+    margin-top: 0.8rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: #FD9A2E;
+    transition: color 0.2s ease;
+}
+
+.tours-list a:hover {
+    color: #1CA49B;
+}
