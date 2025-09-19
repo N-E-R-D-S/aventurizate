@@ -458,3 +458,33 @@ form button:hover {
 .reservations-list li span.pending {
     color: #FD9A2E;
 }
+
+/* --- Tours --- */
+.tour-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tour-detail__title {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+    color: var(--color-primary);
+}
+
+.tour-detail__guide {
+    font-style: italic;
+    color: #555;
+}
+
+.tour-detail__info p {
+    margin: .3rem 0;
+}
+
+.tour-detail__action {
+    margin-top: 1rem;
+    text-align: right;
+}
