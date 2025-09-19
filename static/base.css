@@ -421,3 +421,40 @@ form button:hover {
 .tours-list a:hover {
     color: #1CA49B;
 }
+/* ============================
+   Mis Reservas (my_reservations.html)
+=============================== */
+.reservations-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    display: grid;
+    gap: 1.2rem;
+}
+
+.reservations-list li {
+    background: #fff;
+    border-left: 5px solid #FD9A2E;
+    padding: 1.2rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.reservations-list li strong {
+    font-size: 1.1rem;
+    color: #1A1A1A;
+}
+
+.reservations-list li p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+}
+
+.reservations-list li span.status {
+    font-weight: bold;
+    color: #6E9B3C;
+}
+
+.reservations-list li span.pending {
+    color: #FD9A2E;
+}
