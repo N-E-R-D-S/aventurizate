@@ -488,3 +488,36 @@ form button:hover {
     margin-top: 1rem;
     text-align: right;
 }
+
+/* --- Lista de Tours --- */
+.tour-list__title {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--color-primary);
+}
+
+.tour-list__items {
+    display: grid;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+.tour-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    transition: transform .2s ease;
+}
+
+.tour-card:hover {
+    transform: translateY(-3px);
+}
+
+.tour-card__title {
+    font-size: 1.4rem;
+    margin-bottom: .5rem;
+    color: var(--color-accent);
+}
