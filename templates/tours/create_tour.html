@@ -1,24 +1,41 @@
-{% extends "layout.html" %}
-
-{% block body %}
-<h1>Crear nuevo tour</h1>
-<form method="post">
+{% extends "layout.html" %} {% block body %}
+<main>
+  <h1>Crear nuevo tour</h1>
+  <form method="post" class="tour-form">
     {% csrf_token %}
-    <label for="name">Nombre del tour:</label>
-    <input type="text" name="name" id="name">
-    <label for="description">Descripción:</label>
-    <textarea name="description" id="description"></textarea>
 
-    <label for="date">Fecha:</label>
-    <input type="datetime-local" name="date" id="date">
+    <div class="form-group">
+      <label for="name">Nombre del tour:</label>
+      <input type="text" name="name" id="name" required />
+    </div>
 
-    <label for="max_participants">Cupo máximo:</label>
-    <input type="number" name="max_participants" id="max_participants">
+    <div class="form-group">
+      <label for="description">Descripción:</label>
+      <textarea name="description" id="description" rows="4"></textarea>
+    </div>
 
-    <label for="price">Precio (opcional):</label>
-    <input type="number" step="0.01" name="price" id="price">
+    <div class="form-group">
+      <label for="date">Fecha:</label>
+      <input type="datetime-local" name="date" id="date" required />
+    </div>
 
-    <button type="submit">Guardar</button>
-</form>
+    <div class="form-group">
+      <label for="max_participants">Cupo máximo:</label>
+      <input
+        type="number"
+        name="max_participants"
+        id="max_participants"
+        min="1"
+        required
+      />
+    </div>
 
+    <div class="form-group">
+      <label for="price">Precio (opcional):</label>
+      <input type="number" step="0.01" name="price" id="price" />
+    </div>
+
+    <button type="submit" class="btn-primary">Guardar</button>
+  </form>
+</main>
 {% endblock %}

@@ -316,3 +316,242 @@ a:hover {
 .pagination__info {
     margin: 0 var(--space-sm);
 }
+
+form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+form label {
+    font-weight: 600;
+    color: #1A1A1A;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: "Lato", sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #1CA49B;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(28, 164, 155, 0.15);
+}
+
+form button {
+    background: #1CA49B;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.9rem 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background: #6E9B3C;
+}
+
+
+/* ============================
+   Mis Tours (my_tours.html)
+=============================== */
+.tours-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.tours-list li {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tours-list li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.tours-list h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: #1CA49B;
+}
+
+.tours-list p {
+    margin: 0.4rem 0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.tours-list a {
+    display: inline-block;
+    margin-top: 0.8rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: #FD9A2E;
+    transition: color 0.2s ease;
+}
+
+.tours-list a:hover {
+    color: #1CA49B;
+}
+/* ============================
+   Mis Reservas (my_reservations.html)
+=============================== */
+.reservations-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    display: grid;
+    gap: 1.2rem;
+}
+
+.reservations-list li {
+    background: #fff;
+    border-left: 5px solid #FD9A2E;
+    padding: 1.2rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.reservations-list li strong {
+    font-size: 1.1rem;
+    color: #1A1A1A;
+}
+
+.reservations-list li p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+}
+
+.reservations-list li span.status {
+    font-weight: bold;
+    color: #6E9B3C;
+}
+
+.reservations-list li span.pending {
+    color: #FD9A2E;
+}
+
+/* --- Tours --- */
+.tour-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tour-detail__title {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+    color: var(--color-primary);
+}
+
+.tour-detail__guide {
+    font-style: italic;
+    color: #555;
+}
+
+.tour-detail__info p {
+    margin: .3rem 0;
+}
+
+.tour-detail__action {
+    margin-top: 1rem;
+    text-align: right;
+}
+
+/* --- Lista de Tours --- */
+.tour-list__title {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--color-primary);
+}
+
+.tour-list__items {
+    display: grid;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+.tour-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    transition: transform .2s ease;
+}
+
+.tour-card:hover {
+    transform: translateY(-3px);
+}
+
+.tour-card__title {
+    font-size: 1.4rem;
+    margin-bottom: .5rem;
+    color: var(--color-accent);
+}
+/* --- Participantes --- */
+.participants__title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.participants__list {
+    list-style: none;
+    padding: 0;
+}
+
+.participants__item {
+    padding: .6rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+.participants__name {
+    font-weight: bold;
+}
+
+.status {
+    padding: .2rem .6rem;
+    border-radius: 6px;
+    font-size: .9rem;
+    background: var(--color-secondary);
+    color: #fff;
+}
+
+.status.pending {
+    background: var(--color-accent);
+}
