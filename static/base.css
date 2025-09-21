@@ -555,3 +555,143 @@ form button:hover {
 .status.pending {
     background: var(--color-accent);
 }
+/* --- Reserva detalle --- */
+.reserve-detail {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reserve-detail__title {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: .5rem;
+}
+
+.reserve-detail__description {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.reserve-detail__subtitle {
+    margin: 1.5rem 0 1rem;
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+}
+
+.reserve-detail__bird-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reserve-detail__bird-item {
+    padding: .5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.reserve-detail__photo-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.reserve-detail__photo-item {
+    background: #fafafa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.reserve-detail__photo-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.reserve-detail__photo-item figcaption {
+    padding: .5rem;
+    font-size: .9rem;
+    text-align: center;
+}
+/* --- Lista de reservas --- */
+.reserve-list__title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+}
+
+.reserve-list__items {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.reserve-card {
+    background: #fff;
+    padding: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    transition: transform .2s ease;
+}
+
+.reserve-card:hover {
+    transform: translateY(-3px);
+}
+
+.reserve-card__title {
+    font-size: 1.4rem;
+    margin-bottom: .5rem;
+}
+
+.reserve-card__link {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.reserve-card__link:hover {
+    text-decoration: underline;
+}
+
+.reserve-card__description {
+    font-size: 1rem;
+    margin-bottom: .5rem;
+}
+
+.reserve-card__location {
+    font-size: .9rem;
+    color: #666;
+}
+
+/* --- Paginación --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    margin-top: 2rem;
+}
+
+.pagination__link {
+    padding: .5rem 1rem;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background .2s ease;
+}
+
+.pagination__link:hover {
+    background: var(--color-secondary);
+}
+
+.pagination__info {
+    font-size: .9rem;
+    color: #333;
+    padding: .5rem 1rem;
+}

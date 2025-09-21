@@ -1,28 +1,37 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block body %}
+<main class="reserve-detail">
+  <header class="reserve-detail__header">
+    <h1 class="reserve-detail__title">{{ reserve.name }}</h1>
+    <p class="reserve-detail__description">{{ reserve.description }}</p>
+  </header>
 
-{% block body %}
-<h1>{{ reserve.name }}</h1>
-<p>{{ reserve.description }}</p>
+  <section class="reserve-detail__birds">
+    <h2 class="reserve-detail__subtitle">Aves que se pueden observar</h2>
+    <ul class="reserve-detail__bird-list">
+      {% for bird in birds %}
+      <li class="reserve-detail__bird-item">{{ bird.common_name }}</li>
+      {% empty %}
+      <li class="reserve-detail__bird-item">
+        No se han registrado aves para esta reserva.
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
 
-<h2>Aves que se pueden observar</h2>
-<ul>
-    {% for bird in birds %}
-        <li>{{ bird.common_name }}</li>
-    {% empty %}
-        <li>No se han registrado aves para esta reserva.</li>
-    {% endfor %}
-</ul>
-
-<h2>Fotos de la reserva</h2>
-<ul>
-    {% for photo in photos %}
-        <li>
-        <img src="{{ photo.image.url }}" alt="{{ photo.description }}" width="200">
-        <p>{{ photo.description }}</p>
-        </li>
-    {% empty %}
-        <li>No hay fotos disponibles.</li>
-    {% endfor %}
-</ul>
-
+  <section class="reserve-detail__photos">
+    <h2 class="reserve-detail__subtitle">Fotos de la reserva</h2>
+    <div class="reserve-detail__photo-grid">
+      {% for photo in photos %}
+      <figure class="reserve-detail__photo-item">
+        <img src="{{ photo.image.url }}" alt="{{ photo.description }}" />
+        {% if photo.description %}
+        <figcaption>{{ photo.description }}</figcaption>
+        {% endif %}
+      </figure>
+      {% empty %}
+      <p>No hay fotos disponibles.</p>
+      {% endfor %}
+    </div>
+  </section>
+</main>
 {% endblock %}
