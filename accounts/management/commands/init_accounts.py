@@ -27,7 +27,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("✅ Países cargados."))
 
         # Crear idiomas
-        for lang in pycountry.languages:
+        """for lang in pycountry.languages:
             name = getattr(lang, "name", None)
             alpha_2 = getattr(lang, "alpha_2", None)
             alpha_3 = getattr(lang, "alpha_3", None)
@@ -44,7 +44,7 @@ class Command(BaseCommand):
                         defaults={"name": name, "alpha_2": alpha_2}
                     )
                 else:
-                    Language.objects.get_or_create(name=name)
+                    Language.objects.get_or_create(name=name)"""
 
-        self.stdout.write(self.style.SUCCESS("✅ Idiomas cargados."))
+        # self.stdout.write(self.style.SUCCESS("✅ Idiomas cargados."))
         self.stdout.write(self.style.SUCCESS("🚀 Inicialización completa."))
