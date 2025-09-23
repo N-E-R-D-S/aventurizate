@@ -77,33 +77,37 @@ a:hover {
 
 .header {
   background-color: var(--color-turquoise);
-  padding: var(--space-sm) var(--space-md);
+  padding: 0;
 }
 
 .nav {
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.nav__list {
   display: flex;
-  gap: var(--space-sm);
-  list-style: none;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+}
+.nav__logo {
+  height: 64px;
+  width: auto;
+  margin: auto;
+  display: inline-block;
 }
 
 .nav__link {
   color: var(--color-white);
   font-weight: 600;
   padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--radius);
   transition: background-color 0.3s ease;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-turquoise);
+  transition: 0.5s ease-in-out;
 }
 
 .nav__link:hover,
 .nav__link:focus {
-  background-color: var(--color-green);
+  filter: brightness(110%);
   color: var(--color-white);
 }
 
