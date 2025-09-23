@@ -32,12 +32,16 @@
 }
 
 /* Body */
-body.page {
+body {
     font-family: var(--font-body);
     font-size: 1rem;
     line-height: 1.6;
     color: var(--color-black);
     background-color: var(--color-white);
+
+}
+body, html {
+    height: 100%;
 }
 
 /* Titulos */
@@ -89,7 +93,7 @@ a:hover {
     flex-wrap: wrap;
 }
 
-.nav__item {}
+
 
 .nav__link {
     color: var(--color-white);
@@ -108,10 +112,11 @@ a:hover {
 /* ==============================
    Main Sections
    ============================== */
-.page__main {
+.main {
     max-width: 1200px;
     margin: var(--space-lg) auto;
     padding: 0 var(--space-md);
+    min-height: calc(100vh - 70px); /* Ajusta según el tamaño del header y footer */
 }
 
 /* Hero Section */
@@ -181,7 +186,6 @@ a:hover {
     color: var(--color-white);
     text-align: center;
     padding: var(--space-md);
-    margin-top: var(--space-lg);
 }
 
 .footer__text {
@@ -248,11 +252,7 @@ a:hover {
 /* ==============================
    Bird List
    ============================== */
-.birds {
-    max-width: 1200px;
-    margin: var(--space-lg) auto;
-    padding: 0 var(--space-md);
-}
+
 
 .birds__title {
     text-align: center;
