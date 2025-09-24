@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aventurízate</title>
+    <link href="{% static 'base.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    {% include "includes/nav.html" %}
+
+    <main class="main">{% block body %}{% endblock %}</main>
+
+    <footer class="footer">
+      <p class="footer__text">© 2025 Aventurízate - Aviturismo en Nicaragua</p>
+    </footer>
+  </body>
+</html>

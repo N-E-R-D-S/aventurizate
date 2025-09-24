@@ -1,0 +1,27 @@
+{% extends "layout.html" %} {% block body %}
+<main>
+  <h1>Mis Tours</h1>
+
+  {% if tours %}
+  <ul class="tours-list">
+    {% for tour in tours %}
+    <li>
+      <article>
+        <header>
+          <h3>{{ tour.name }}</h3>
+        </header>
+        <p>{{ tour.description }}</p>
+        <p>📅 Fecha: {{ tour.date }}</p>
+        <p>👤 Guía: {{ tour.guide.user.username }}</p>
+        <a href="{% url 'tour_detail' tour.id %}" class="btn-link"
+          >Ver detalles</a
+        >
+      </article>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No has creado ningún tour aún.</p>
+  {% endif %}
+</main>
+{% endblock %}

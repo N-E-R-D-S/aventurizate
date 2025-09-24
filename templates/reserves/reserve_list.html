@@ -1,0 +1,57 @@
+{% extends "layout.html" %} {% block body %}
+<main class="reserve-list">
+  <h1 class="reserve-list__title">Reservas Naturales</h1>
+
+  {% if reserves %}
+  <ul class="reserve-list__items">
+    {% for reserve in reserves %}
+    <li class="reserve-card">
+      <article>
+        <h2 class="reserve-card__title">
+          <a
+            href="{% url 'reserve_detail' reserve.pk %}"
+            class="reserve-card__link"
+          >
+            {{ reserve.name }}
+          </a>
+        </h2>
+        <p class="reserve-card__description">
+          {{ reserve.description|truncatewords:20 }}
+        </p>
+        {% if reserve.latitude and reserve.longitude %}
+        <p class="reserve-card__location">
+          📍 {{ reserve.latitude }}, {{ reserve.longitude }}
+        </p>
+        {% endif %}
+      </article>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No hay reservas disponibles.</p>
+  {% endif %}
+
+  <!-- Paginación -->
+  <nav class="pagination">
+    {% if reserves.has_previous %}
+    <a href="?page=1" class="pagination__link">« Primero</a>
+    <a href="?page={{ reserves.previous_page_number }}" class="pagination__link"
+      >‹ Anterior</a
+    >
+    {% endif %}
+
+    <span class="pagination__info">
+      Página {{ reserves.number }} de {{ reserves.paginator.num_pages }}
+    </span>
+
+    {% if reserves.has_next %}
+    <a href="?page={{ reserves.next_page_number }}" class="pagination__link"
+      >Siguiente ›</a
+    >
+    <a href="?page={{ reserves.paginator.num_pages }}" class="pagination__link"
+      >Último »</a
+    >
+    {% endif %}
+  </nav>
+</main>
+{% endblock %}

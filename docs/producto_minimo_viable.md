@@ -1,78 +1,49 @@
-# ✅ Requisitos para el MVP de **Aventurízate**
+# Funcionalidades específicas del MVP Aventurízate
 
-## 1. **Usuarios y Autenticación**
+## 1. Gestión de usuarios
 
-- Registro e inicio de sesión.
-- Diferenciación mínima de roles:
+- Registro básico de turistas y guías con nombre, email, contraseña y rol.
+- Inicio de sesión para turistas y guías.
+- Validación de credenciales y manejo de errores (email duplicado, contraseña incorrecta).
+- Roles:
+  - Turista: puede explorar aves, reservas y tours.
+  - Guía: puede crear y gestionar tours.
 
-  - **Turista**: puede consultar aves, reservas y hacer una reserva.
-  - **Guía**: aparece como opción para ser contratado.
+## 2. Catálogo de aves
 
-- Perfil básico: nombre, email, rol, contraseña.
+- Listado de aves con:
+  - Foto (si está disponible).
+  - Nombre común y científico.
+  - Breve descripción.
+- Posibilidad de consultar detalle de cada ave.
 
----
+## 3. Reservas naturales
 
-## 2. **Catálogo de Aves (Birds App)**
-
-- Lista de aves con:
-
-  - Nombre común.
-  - Nombre científico.
-  - Foto.
-  - Descripción (markdown!?).
-
-- Página de detalle con información básica.
-- Relación con al menos una **reserva natural** (ej. “se observa en X reserva”).
-
----
-
-## 3. **Reservas Naturales (Reserves App)**
-
-- Lista de reservas con:
-
+- Listado de reservas naturales con:
   - Nombre.
   - Ubicación.
-  - Descripción.
+  - Breve descripción.
+  - Aves que pueden observarse en cada reserva.
 
-- Relación con aves (qué especies se pueden ver allí).
+## 4. Tours / visitas guiadas
 
----
+- Guías pueden:
+  - Crear un tour con nombre, reserva asociada, fechas disponibles, cupo máximo y precio (opcional).
+  - Publicar el tour para que los turistas lo vean.
+  - Visualizar sus tours publicados y número de participantes.
+- Turistas pueden:
+  - Explorar los tours disponibles.
+  - Seleccionar un tour y confirmar participación.
+  - Ver confirmación de reserva en pantalla.
 
-## 4. **Sistema de Reservas (Bookings App)**
+## 5. Interfaz y navegación
 
-- Turista puede:
+- Menú principal: Inicio | Aves | Reservas Naturales | Tours | Ingresar.
+- Flujo intuitivo y minimalista.
+- Diseño demo-friendly con HTML + CSS (o Tailwind/Bootstrap).
 
-  - Seleccionar una reserva.
-  - Elegir un guía disponible.
-  - Escoger fecha y confirmar reserva.
+## 6. Extras opcionales (si hay tiempo)
 
-- El sistema guarda la reserva en la BD con estado “pendiente”.
-- Guía puede aceptar o rechazar la reserva (opcional pero ideal).
-
----
-
-## 5. **Interfaz Básica**
-
-- Página principal con navegación:
-
-  - Aves | Reservas | Reservar | Ingresar/Registrarse.
-
-- Estilo simple pero claro (HTML + CSS + un poco de Alpine.js).
-- No tiene que ser el diseño final, solo que se vea organizado y usable.
-
----
-
-# 🎯 Extras “si queda tiempo”
-
-- Calendario de eventos.
-- Perfiles detallados de guías.
-- Artículos educativos (mínimo un ejemplo).
-
----
-
-# 🚀 Justificación del MVP
-
-1. Hay **usuarios y roles** (turista/guía).
-2. Hay un **catálogo de aves**.
-3. Hay **información de reservas naturales**.
-4. Existe un **sistema básico de reservas**.
+- Relación de aves con al menos una reserva natural.
+- Calendario de eventos o festivales de aves.
+- Módulo educativo con un artículo de prueba.

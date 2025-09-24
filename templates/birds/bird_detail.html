@@ -1,0 +1,148 @@
+{% extends "layout.html" %} {% load static %} {% block body %}
+<article class="bird-detail">
+  <header class="bird-detail__header">
+    <div class="bird-detail__header-left">
+      <h1 class="bird-detail__title">{{ bird.common_name }}</h1>
+      <p class="bird-detail__scientific"><em>{{ bird.scientific_name }}</em></p>
+
+      {% if bird.iucn_red_list_category %}
+      <p class="bird-detail__status">
+        <strong>Estado UICN:</strong> {{ bird.iucn_red_list_category.name }}
+      </p>
+      {% endif %}
+
+      <section class="bird-detail__classification-header">
+        <h3 class="bird-detail__subtitle">Clasificación científica</h3>
+        <ul class="bird-detail__list">
+          <li class="bird-detail__item">
+            <strong>Orden:</strong> {{ bird.genus.family.order.name }}
+          </li>
+          <li class="bird-detail__item">
+            <strong>Familia:</strong> {{ bird.genus.family.name }}
+          </li>
+          <li class="bird-detail__item">
+            <strong>Género:</strong> {{ bird.genus.name }}
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="bird-detail__header-right">
+      {% if photos %}
+      <img
+        src="{{ photos.0.image.url }}"
+        alt="{{ bird.common_name }}"
+        class="bird-detail__header-image"
+      />
+      {% else %}
+      <img
+        src="{% static 'images/no_bird_photo.png' %}"
+        alt="Sin foto disponible"
+        class="bird-detail__header-image"
+      />
+      {% endif %}
+    </div>
+  </header>
+
+  <section class="bird-detail__photos">
+    <h3 class="bird-detail__subtitle">Fotos</h3>
+    <div id="photoswipe-gallery" class="bird-detail__gallery">
+      {% for photo in photos %}
+      <a
+        href="{{ photo.image.url }}"
+        data-pswp-width="1024"
+        data-pswp-height="768"
+        class="bird-detail__figure"
+      >
+        <img
+          class="bird-detail__image"
+          src="{{ photo.image.url }}"
+          alt="{{ photo.description }}"
+        />
+      </a>
+      {% empty %}
+      <div class="bird-detail__figure">
+        <img
+          class="bird-detail__image"
+          src="{% static 'images/no_bird_photo.png' %}"
+          alt="Sin foto disponible"
+        />
+        <p class="bird-detail__caption">Sin descripción</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <p class="bird-detail__description">{{ bird.description }}</p>
+
+  <section class="bird-detail__distribution">
+    <h3 class="bird-detail__subtitle">Mapa de distribución (Avistamientos)</h3>
+    <div id="bird-map"></div>
+  </section>
+</article>
+
+<!-- PhotoSwipe 5 -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/photoswipe@5/dist/photoswipe.css"
+/>
+<script type="module">
+  import PhotoSwipeLightbox from "https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.js";
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: "#photoswipe-gallery",
+    children: "a",
+    pswpModule: () =>
+      import("https://unpkg.com/photoswipe@5/dist/photoswipe.esm.js"),
+  });
+  lightbox.init();
+</script>
+
+<!-- Leaflet CSS y JS -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+
+<!-- Mapa heatmap -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const NICARAGUA_CENTER = [12.8654, -85.2072];
+      const map = L.map("bird-map").setView(NICARAGUA_CENTER, 7);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 18,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+      }).addTo(map);
+
+      const points = {{ distribution_points|safe }}; // Marca error porque interfiere con el motor de plantillas
+      const heatPoints = points.filter(p => p.lat && p.lng).map(p => [p.lat, p.lng, 1]);
+
+      if (heatPoints.length > 0) {
+          L.heatLayer(heatPoints, {
+              radius: 25,
+              blur: 20,
+              maxZoom: 5,
+              gradient: {
+                  0.2: '#22c',
+                  0.4: '#2cc',
+                  0.6: '#2c2',
+                  0.8: '#cc2',
+                  1.0: '#c22'
+              },
+              max: 3
+          }).addTo(map);
+
+          const latlngs = heatPoints.map(p => [p[0], p[1]]);
+          const bounds = L.latLngBounds(latlngs);
+          map.fitBounds(bounds, { padding: [50, 50] });
+      } else {
+          map.setView(NICARAGUA_CENTER, 7);
+      }
+  }); // marca error porque interfiere con el motor de plantillas
+</script>
+
+<style></style>
+{% endblock %}

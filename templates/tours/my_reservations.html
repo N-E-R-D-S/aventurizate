@@ -1,0 +1,29 @@
+{% extends "layout.html" %} {% block body %}
+<main>
+  <h1>Mis reservas</h1>
+
+  {% if reservations %}
+  <ul class="reservations-list">
+    {% for res in reservations %}
+    <li>
+      <article>
+        <header>
+          <strong>{{ res.tour.name }}</strong>
+        </header>
+        <p>📅 Fecha: {{ res.tour.date }}</p>
+        <p>
+          Estado: {% if res.is_confirmed %}
+          <span class="status">Confirmada</span>
+          {% else %}
+          <span class="status pending">Pendiente</span>
+          {% endif %}
+        </p>
+      </article>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No tienes reservas registradas.</p>
+  {% endif %}
+</main>
+{% endblock %}

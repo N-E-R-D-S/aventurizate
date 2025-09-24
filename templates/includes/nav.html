@@ -1,0 +1,30 @@
+{% load static %}
+
+<header class="header">
+  <nav class="nav" aria-label="Menú principal">
+    <a class="nav__link" href="{% url 'index' %}">
+      <img
+        class="nav__logo"
+        src="{% static 'images/logo.svg' %}"
+        alt="logo de aventurizate"
+      />
+    </a>
+
+    <a class="nav__link" href="{% url 'index' %}">Inicio</a>
+    <a class="nav__link" href="{% url 'bird_list' %}">Aves</a>
+    <a class="nav__link" href="{% url 'tour_list' %}">Tours</a>
+    <a class="nav__link" href="{% url 'reserve_list' %}">Reservas Naturales</a>
+
+    {% if user.is_authenticated %} {% if user.is_guide %}
+    <a class="nav__link" href="{% url 'create_tour' %}">Crear Tour</a>
+    <a class="nav__link" href="{% url 'my_tours' %}">Mis Tours</a>
+    {% endif %} {% if user.is_tourist %}
+    <a class="nav__link" href="{% url 'my_reservations' %}">Mis Reservas</a>
+    {% endif %}
+    <a class="nav__link" href="{% url 'logout' %}">Cerrar sesión</a>
+    {% else %}
+    <a class="nav__link" href="{% url 'login' %}">Iniciar sesión</a>
+    <a class="nav__link" href="{% url 'register' %}">Registrarse</a>
+    {% endif %}
+  </nav>
+</header>
