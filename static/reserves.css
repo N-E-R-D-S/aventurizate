@@ -82,7 +82,7 @@
 .reserve-card {
   background: var(--color-white);
   padding: 1.2rem;
-  border-radius: 10px;
+  border-radius: var(--radius);
   box-shadow: var(--box-shadow);
   border: var(--border);
   transition: var(--transition);

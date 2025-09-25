@@ -41,7 +41,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("bird_list")
+            return redirect("index")
     else:
         form = AuthenticationForm()
     context = {"form": form}
@@ -84,6 +84,8 @@ def register_view(request):
                 guide = GuideProfile.objects.create(user=user)
                 guide.save()
                 Group.objects.get(name='Guide').user_set.add(user)
+            login(request, user)
+            return redirect("index")
         except Exception as e:
             context = {
                 "message": "Username already taken."
