@@ -1,4 +1,12 @@
-{% extends "layout.html" %} {% block body %}
+{% extends "layout.html" %}
+{% load static %}
+{% block title %} {{tour.name}} {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'tours.css' %}" />
+{% endblock %}
+
+{% block body %}
 <main class="tour-detail">
   <header class="tour-detail__header">
     <h1 class="tour-detail__title">{{ tour.name }}</h1>

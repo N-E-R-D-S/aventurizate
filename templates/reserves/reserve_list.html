@@ -1,4 +1,12 @@
-{% extends "layout.html" %} {% block body %}
+{% extends "layout.html" %}
+{% load static %}
+{% block title %} {{reserve.name}} {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'reserves.css' %}" />
+{% endblock %}
+
+{% block body %}
 <main class="reserve-list">
   <h1 class="reserve-list__title">Reservas Naturales</h1>
 

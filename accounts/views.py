@@ -4,9 +4,9 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
 from .models import User, TouristProfile, GuideProfile
-from birds.models import Species
+from birds.models import Species, Photo
 from tours.models import Tour
-from reserves.models import Reserve
+from reserves.models import Reserve, ReservePhoto
 import random
 
 def index(request):
@@ -25,8 +25,10 @@ def index(request):
 
     context = {
         "random_bird": random_bird,
+        "bird_photo": Photo.objects.get(bird=random_bird) if Photo.objects.filter(bird=random_bird).exists() else None,
         "random_tour": random_tour,
         "random_reserve": random_reserve,
+        "reserve_photo": ReservePhoto.objects.get(reserve=random_reserve) if ReservePhoto.objects.filter(reserve=random_reserve).exists() else None
     }
 
     return render(request, "accounts/index.html", context)

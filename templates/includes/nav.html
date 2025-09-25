@@ -1,5 +1,4 @@
 {% load static %}
-
 <header class="header">
   <nav class="nav" aria-label="Menú principal">
     <a class="nav__link" href="{% url 'index' %}">
@@ -15,16 +14,21 @@
     <a class="nav__link" href="{% url 'tour_list' %}">Tours</a>
     <a class="nav__link" href="{% url 'reserve_list' %}">Reservas Naturales</a>
 
-    {% if user.is_authenticated %} {% if user.is_guide %}
-    <a class="nav__link" href="{% url 'create_tour' %}">Crear Tour</a>
-    <a class="nav__link" href="{% url 'my_tours' %}">Mis Tours</a>
-    {% endif %} {% if user.is_tourist %}
-    <a class="nav__link" href="{% url 'my_reservations' %}">Mis Reservas</a>
-    {% endif %}
-    <a class="nav__link" href="{% url 'logout' %}">Cerrar sesión</a>
+    {% if user.is_authenticated %}
+      {% if user.is_guide %}
+        <a class="nav__link" href="{% url 'create_tour' %}">Crear Tour</a>
+        <a class="nav__link" href="{% url 'my_tours' %}">Mis Tours</a>
+      {% endif %}
+      {% if user.is_tourist %}
+        <a class="nav__link" href="{% url 'my_reservations' %}">Mis Reservas</a>
+      {% endif %}
+      {% if user.is_staff %}
+        <a class="nav__link" href="{% url 'admin:index' %}">Admin</a>
+      {% endif %}
+      <a class="nav__link" href="{% url 'logout' %}">Cerrar sesión</a>
     {% else %}
-    <a class="nav__link" href="{% url 'login' %}">Iniciar sesión</a>
-    <a class="nav__link" href="{% url 'register' %}">Registrarse</a>
+      <a class="nav__link" href="{% url 'login' %}">Iniciar sesión</a>
+      <a class="nav__link" href="{% url 'register' %}">Registrarse</a>
     {% endif %}
   </nav>
 </header>

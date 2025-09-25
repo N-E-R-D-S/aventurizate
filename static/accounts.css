@@ -1,0 +1,72 @@
+/* hero */
+.hero {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.hero__title {
+  font-size: 2rem;
+  color: var(--color-primary);
+}
+
+/* highlight */
+
+.highlight {
+  background-color: var(--color-gray-light);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  border-left: 6px solid var(--color-primary);
+  border-radius: var(--radius);
+}
+
+.highlight--bird {
+  border-left-color: var(--color-secondary);
+}
+
+.highlight--tour {
+  border-left-color: var(--color-accent);
+}
+
+.highlight--reserve {
+  border-left-color: var(--color-primary);
+}
+
+.highlight__title {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+  color: var(--color-neutro);
+}
+
+.highlight__subtitle {
+  font-size: 1.2rem;
+  margin-bottom: var(--space-xs);
+  color: var(--color-primary);
+}
+
+.highlight__scientific {
+  font-style: italic;
+  color: var(--color-secondary);
+}
+
+.highlight__text {
+  color: var(--color-neutro);
+  margin-bottom: var(--space-xs);
+}
+
+.highlight__date {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+}
+
+/* auth */
+
+.auth {
+  margin: var(--space-lg) auto;
+  padding: var(--space-md);
+}
+
+.auth__title {
+  text-align: center;
+  margin-bottom: var(--space-md);
+  color: var(--color-primary);
+}

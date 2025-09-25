@@ -1,4 +1,12 @@
-{% extends "layout.html" %} {% load static %} {% block body %}
+{% extends "layout.html" %}
+{% load static %}
+{% block title %} {{bird.common_name}} {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'birds.css' %}" />
+{% endblock %}
+
+{% block body %}
 <article class="bird-detail">
   <header class="bird-detail__header">
     <div class="bird-detail__header-left">

@@ -1,7 +1,15 @@
-{% extends "layout.html" %} {% block body %}
+{% extends "layout.html" %}
+{% load static %}
+{% block title %} Registro {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'accounts.css' %}" />
+{% endblock %}
+
+{% block body %}
 <section class="auth">
   <h2 class="auth__title">Registrarse</h2>
-  <form class="form form--auth" method="post">
+  <form class="form" method="post">
     {% csrf_token %}
 
     <label class="form__label" for="username">Nombre de usuario:</label>

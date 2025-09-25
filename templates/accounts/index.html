@@ -1,4 +1,12 @@
-{% extends "layout.html" %} {% block body %}
+{% extends "layout.html" %}
+{% load static %}
+{% block title %} Inicio {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'accounts.css' %}" />
+{% endblock %}
+
+{% block body %}
 <section class="hero">
   <h1 class="hero__title">Bienvenido a Aventurízate</h1>
 </section>
@@ -9,11 +17,15 @@
   <article class="highlight__content">
     <h3 class="highlight__subtitle">
       {{ random_bird.common_name }}
+      {% if bird_photo %}
+        <img src="{{ bird_photo }}" alt="">
+      {% endif %}
       <span class="highlight__scientific"
         >({{ random_bird.scientific_name }})</span
       >
     </h3>
     <p class="highlight__text">{{ random_bird.description }}</p>
+    <a href="{% url 'bird_detail' random_bird.slug %}">Ver más</a>
   </article>
 </section>
 {% endif %} {% if random_tour %}
@@ -25,14 +37,19 @@
     </h3>
     <p class="highlight__text">{{ random_tour.description }}</p>
     <p class="highlight__date">Fecha: {{ random_tour.date }}</p>
+    <a href="{% url 'tour_detail' random_tour.id %}">Ver más</a>
   </article>
 </section>
 {% endif %} {% if random_reserve %}
 <section class="highlight highlight--reserve">
   <h2 class="highlight__title">Reserva natural destacada</h2>
   <article class="highlight__content">
+    {% if reserve_photo %}
+        <img src="{{ reserve_photo }}" alt="">
+      {% endif %}
     <h3 class="highlight__subtitle">{{ random_reserve.name }}</h3>
     <p class="highlight__text">{{ random_reserve.description }}</p>
+    <a href="{% url 'reserve_detail' random_reserve.id %}">Ver más</a>
   </article>
 </section>
 {% endif %} {% endblock %}
