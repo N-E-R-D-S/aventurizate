@@ -38,6 +38,7 @@
           📍 {{ reserve.latitude }}, {{ reserve.longitude }}
         </p>
         {% endif %}
+        <a href="{% url 'reserve_detail' reserve.pk %}" class="reserve-card__link">Ver más</a>
       </article>
     </li>
     {% endfor %}

@@ -10,16 +10,13 @@ from reserves.models import Reserve, ReservePhoto
 import random
 
 def index(request):
-    # Obtener un ave aleatoria
     bird_count = Species.objects.count()
     random_bird = Species.objects.get(id=1) if bird_count else None
 
-    # Obtener un tour aleatorio publicado
     tours_qs = Tour.objects.filter(published=True)
     tour_count = tours_qs.count()
     random_tour = tours_qs.get(id=random.randint(1, tour_count)) if tour_count else None
 
-    # Obtener una reserva natural aleatoria
     reserve_count = Reserve.objects.count()
     random_reserve = Reserve.objects.get(id=random.randint(1, reserve_count)) if reserve_count else None
 

@@ -36,8 +36,7 @@
 
 .nav__link:hover,
 .nav__link:focus {
-  filter: brightness(110%);
-  color: var(--color-white);
+  color: var(--color-neutro);
 }
 
 .nav__toggle {
