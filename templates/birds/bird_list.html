@@ -1,6 +1,29 @@
-{% extends "layout.html" %} {% load static %} {% block body %}
+{% extends "layout.html" %}
+
+{% load static %}
+{% block title %} Aves {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'birds.css' %}" />
+{% endblock %}
+
+{% block body %}
+
 <section class="birds">
   <h1 class="birds__title">Catálogo de Aves</h1>
+
+  <form method="get" class="birds__form">
+    {% csrf_token %}
+    <div class="birds__search">
+      <input
+        type="text"
+        name="q"
+        value="{{ query|default:'' }}"
+        placeholder="Buscar por nombre, científico o descripción..."
+      />
+      <button type="submit">Buscar</button>
+    </div>
+  </form>
 
   <div class="birds__grid">
     {% for bird in birds %}

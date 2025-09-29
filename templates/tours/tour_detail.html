@@ -1,4 +1,12 @@
-{% extends "layout.html" %} {% block body %}
+{% extends "layout.html" %}
+{% load static %}
+{% block title %} {{tour.name}} {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'tours.css' %}" />
+{% endblock %}
+
+{% block body %}
 <main class="tour-detail">
   <header class="tour-detail__header">
     <h1 class="tour-detail__title">{{ tour.name }}</h1>
@@ -6,13 +14,13 @@
   </header>
 
   <section class="tour-detail__info">
-    <p><strong>📖 Descripción:</strong> {{ tour.description }}</p>
+    <p> {{ tour.description|linebreaks }}</p>
     <p><strong>📅 Fecha:</strong> {{ tour.date }}</p>
     <p><strong>👥 Cupo máximo:</strong> {{ tour.max_participants }}</p>
     <p><strong>✅ Cupos disponibles:</strong> {{ spots_available }}</p>
     <p><strong>📌 Reservados:</strong> {{ spots_taken }}</p>
     {% if tour.price %}
-    <p><strong>💲 Precio:</strong> ${{ tour.price }}</p>
+    <p><strong>💲 Precio:</strong> C$ {{ tour.price }}</p>
     {% endif %}
   </section>
 

@@ -1,4 +1,12 @@
-{% extends "layout.html" %} {% block body %}
+{% extends "layout.html" %}
+{% load static %}
+{% block title %} Mis Reservaciones {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'tours.css' %}" />
+{% endblock %}
+
+{% block body %}
 <main>
   <h1>Mis reservas</h1>
 

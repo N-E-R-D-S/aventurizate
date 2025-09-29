@@ -15,6 +15,10 @@ def reserve_list(request):
     page_number = request.GET.get('page')
     reserves = paginator.get_page(page_number)
 
+    for reserve in reserves:
+        photo = reserve.reservephoto_set.first()
+        reserve.photo = photo
+
     context = {
         'reserves': reserves
     }
@@ -27,10 +31,14 @@ def reserve_detail(request, pk):
     """
     reserve = get_object_or_404(Reserve, pk=pk)
     birds = reserve.birds.all()
+    for bird in birds:
+        bird.photo = bird.photo_set.first()
     photos = reserve.reservephoto_set.all()
     context = {
         "reserve": reserve,
         "birds": birds,
-        "photos": photos
+        "photos": photos,
+        "latitude": reserve.latitude,
+        "longitude": reserve.longitude,
     }
     return render(request, "reserves/reserve_detail.html", context)

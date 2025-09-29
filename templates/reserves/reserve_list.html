@@ -1,4 +1,12 @@
-{% extends "layout.html" %} {% block body %}
+{% extends "layout.html" %}
+{% load static %}
+{% block title %} Reservas Naturales {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'reserves.css' %}" />
+{% endblock %}
+
+{% block body %}
 <main class="reserve-list">
   <h1 class="reserve-list__title">Reservas Naturales</h1>
 
@@ -15,6 +23,13 @@
             {{ reserve.name }}
           </a>
         </h2>
+        {% if reserve.photo %}
+          <img
+            src="{{ reserve.photo.image.url }}"
+            alt="Foto de {{ reserve.name }}"
+            class="reserve-card__image"
+          />
+        {% endif %}
         <p class="reserve-card__description">
           {{ reserve.description|truncatewords:20 }}
         </p>
@@ -23,6 +38,7 @@
           📍 {{ reserve.latitude }}, {{ reserve.longitude }}
         </p>
         {% endif %}
+        <a href="{% url 'reserve_detail' reserve.pk %}" class="reserve-card__link">Ver más</a>
       </article>
     </li>
     {% endfor %}

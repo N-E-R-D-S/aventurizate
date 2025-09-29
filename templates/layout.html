@@ -5,8 +5,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aventurízate</title>
+    <title>Aventurízate - {% block title %}{% endblock %}</title>
     <link href="{% static 'base.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'layout.css' %}" />
+    {% block head %}{% endblock %}
   </head>
   <body>
     {% include "includes/nav.html" %}
@@ -16,5 +18,7 @@
     <footer class="footer">
       <p class="footer__text">© 2025 Aventurízate - Aviturismo en Nicaragua</p>
     </footer>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    {% block scripts %}{% endblock %}
   </body>
 </html>

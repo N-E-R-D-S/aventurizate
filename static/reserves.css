@@ -1,0 +1,137 @@
+.reserve-detail {
+  margin: 0 auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  border: var(--border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reserve-detail__title {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  color: var(--color-primary);
+}
+.reserve-card__image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.reserve-detail__description {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.reserve-detail__subtitle {
+  margin: 1.5rem 0 1rem;
+  font-size: 1.5rem;
+  color: var(--color-secondary);
+}
+
+.reserve-detail__bird-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.reserve-detail__bird-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.reserve-detail__photo-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.reserve-detail__photo-item {
+  background: #fafafa;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.reserve-detail__photo-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.reserve-detail__photo-item figcaption {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* --- Lista de reservas --- */
+.reserve-list__title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+}
+
+.reserve-list__items {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.reserve-card {
+  background: var(--color-white);
+  padding: 1.2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+  transition: var(--transition);
+}
+
+.reserve-card:hover {
+  transform: var(--transform-hover);
+}
+
+.reserve-card__title {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.reserve-card__link {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.reserve-card__link:hover {
+  text-decoration: underline;
+}
+
+.reserve-card__description {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.reserve-card__location {
+  font-size: 0.9rem;
+  color: #666;
+}
+.bird-in-reserve {
+  padding: var(--space-xs);  
+}
+.bird-in-reserve__image {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-right: 1rem;
+}
+.bird-in-reserve__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

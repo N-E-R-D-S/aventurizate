@@ -1,4 +1,13 @@
-{% extends "layout.html" %} {% block body %}
+{% extends "layout.html" %}
+
+{% load static %}
+{% block title %} Tours Disponibles {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'tours.css' %}" />
+{% endblock %}
+
+{% block body %}
 <main class="tour-list">
   <h1 class="tour-list__title">Tours disponibles</h1>
 

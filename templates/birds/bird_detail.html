@@ -1,4 +1,12 @@
-{% extends "layout.html" %} {% load static %} {% block body %}
+{% extends "layout.html" %}
+{% load static %}
+{% block title %} {{bird.common_name}} {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'birds.css' %}" />
+{% endblock %}
+
+{% block body %}
 <article class="bird-detail">
   <header class="bird-detail__header">
     <div class="bird-detail__header-left">
@@ -73,7 +81,15 @@
     </div>
   </section>
 
-  <p class="bird-detail__description">{{ bird.description }}</p>
+  <p class="bird-detail__description">
+    {% if bird.description %}
+      {{ bird.description|linebreaks }}
+    {% else %}
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+      scelerisque aliquam odio et faucibus. Nulla rhoncus feugiat eros quis
+      consectetur. Morbi neque ex, condimentum dapibus congue et, vulputate ut
+    {% endif %}
+  </p>
 
   <section class="bird-detail__distribution">
     <h3 class="bird-detail__subtitle">Mapa de distribución (Avistamientos)</h3>
