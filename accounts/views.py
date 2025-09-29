@@ -10,25 +10,22 @@ from reserves.models import Reserve, ReservePhoto
 import random
 
 def index(request):
-    # Obtener un ave aleatoria
     bird_count = Species.objects.count()
-    random_bird = Species.objects.all()[random.randint(0, bird_count - 1)] if bird_count else None
+    random_bird = Species.objects.get(id=1) if bird_count else None
 
-    # Obtener un tour aleatorio publicado
     tours_qs = Tour.objects.filter(published=True)
     tour_count = tours_qs.count()
-    random_tour = tours_qs[random.randint(0, tour_count - 1)] if tour_count else None
+    random_tour = tours_qs.get(id=random.randint(1, tour_count)) if tour_count else None
 
-    # Obtener una reserva natural aleatoria
     reserve_count = Reserve.objects.count()
-    random_reserve = Reserve.objects.all()[random.randint(0, reserve_count - 1)] if reserve_count else None
+    random_reserve = Reserve.objects.get(id=random.randint(1, reserve_count)) if reserve_count else None
 
     context = {
         "random_bird": random_bird,
-        "bird_photo": Photo.objects.get(bird=random_bird) if Photo.objects.filter(bird=random_bird).exists() else None,
+        "bird_photo": Photo.objects.filter(bird=random_bird).first(),
         "random_tour": random_tour,
         "random_reserve": random_reserve,
-        "reserve_photo": ReservePhoto.objects.get(reserve=random_reserve) if ReservePhoto.objects.filter(reserve=random_reserve).exists() else None
+        "reserve_photo": ReservePhoto.objects.filter(reserve=random_reserve).first()
     }
 
     return render(request, "accounts/index.html", context)

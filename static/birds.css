@@ -3,6 +3,18 @@
   margin-bottom: var(--space-lg);
   color: var(--color-primary);
 }
+.birds__search {
+  display: flex;
+}
+.birds__form {
+  width: 100%;
+  max-width: 100%;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+}
 
 .birds__grid {
   display: grid;

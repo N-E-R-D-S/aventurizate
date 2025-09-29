@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.core.files.base import ContentFile
 from .models import Species, Photo
+from django.db.models import Q
 from .pygbif_helper import get_gbif_taxon_key, get_species_distribution, get_gbif_photos, optimize_image, get_species_occurrences
 import requests
 
@@ -13,14 +14,21 @@ def bird_list_view(request):
     """
     Vista para listar las aves con paginación
     """
+    query = request.GET.get("q", "")
     bird_list = Species.objects.all().select_related(
         "genus__family__order", "iucn_red_list_category"
-    )
+    ).order_by("scientific_name")
+    if query:
+        bird_list = bird_list.filter(
+            Q(common_name__icontains=query) |
+            Q(scientific_name__icontains=query) |
+            Q(description__icontains=query)
+        )
     paginator = Paginator(bird_list, birdPerPage)
 
     page_number = request.GET.get("page")
     birds = paginator.get_page(page_number)
-    context = {"birds": birds}
+    context = {"birds": birds, "query": query}
 
     return render(request, "birds/bird_list.html", context)
 

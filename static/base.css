@@ -59,10 +59,6 @@ h6 {
   margin-bottom: var(--space-sm);
 }
 
-p {
-  margin-bottom: var(--space-sm);
-}
-
 /* Links */
 a {
   text-decoration: none;
@@ -77,10 +73,11 @@ a:hover {
 form {
   background: var(--color-gray-light);
   padding: 2rem;
+
   border-radius: var(--radius);
   box-shadow: var(--box-shadow);
   max-width: 600px;
-  margin: 0 auto;
+  margin: 1rem auto;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;

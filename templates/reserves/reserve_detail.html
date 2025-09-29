@@ -11,14 +11,26 @@
 <main class="reserve-detail">
   <header class="reserve-detail__header">
     <h1 class="reserve-detail__title">{{ reserve.name }}</h1>
-    <p class="reserve-detail__description">{{ reserve.description }}</p>
+    <p class="reserve-detail__description">{{ reserve.description|linebreaks }}</p>
   </header>
 
   <section class="reserve-detail__birds">
     <h2 class="reserve-detail__subtitle">Aves que se pueden observar</h2>
     <ul class="reserve-detail__bird-list">
       {% for bird in birds %}
-      <li class="reserve-detail__bird-item">{{ bird.common_name }}</li>
+      <li class="reserve-detail__bird-item">
+        <article class="bird-in-reserve">
+          {% if bird.photo %}
+            <img class="bird-in-reserve__image" src="{{ bird.photo.image.url }}" alt="Foto de {{ bird.common_name }}">
+          {% else %}
+            <img class="bird-in-reserve__image" src="{% static 'images/no_bird_photo.png' %}" alt="Sin foto disponible">
+          {% endif %}
+          <div class="bird-in-reserve__info">
+            <a class="bird-in-reserve__name" href="{% url 'bird_detail' bird.slug %}">{{ bird.common_name }}</a>
+            <span class="bird-in-reserve__scientific">{{ bird.scientific_name }}</span>
+          </div>
+        </article>
+      </li>
       {% empty %}
       <li class="reserve-detail__bird-item">
         No se han registrado aves para esta reserva.
@@ -29,18 +41,44 @@
 
   <section class="reserve-detail__photos">
     <h2 class="reserve-detail__subtitle">Fotos de la reserva</h2>
-    <div class="reserve-detail__photo-grid">
+    <div id="photoswipe-gallery" class="reserve-detail__photo-grid">
       {% for photo in photos %}
-      <figure class="reserve-detail__photo-item">
+      <a
+        href="{{ photo.image.url }}"
+        data-pswp-width="1024"
+        data-pswp-height="768"
+        class="reserve-detail__photo-item"
+      >
         <img src="{{ photo.image.url }}" alt="{{ photo.description }}" />
         {% if photo.description %}
         <figcaption>{{ photo.description }}</figcaption>
         {% endif %}
-      </figure>
+      </a>
       {% empty %}
-      <p>No hay fotos disponibles.</p>
+      <div class="reserve-detail__photo-item">
+        <img src="{% static 'images/no_bird_photo.png' %}" alt="Sin foto disponible" />
+        <figcaption>Sin descripción</figcaption>
+      </div>
       {% endfor %}
     </div>
   </section>
+
+<!-- PhotoSwipe 5 -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/photoswipe@5/dist/photoswipe.css"
+/>
+<script type="module">
+  import PhotoSwipeLightbox from "https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.js";
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: "#photoswipe-gallery",
+    children: "a",
+    pswpModule: () =>
+      import("https://unpkg.com/photoswipe@5/dist/photoswipe.esm.js"),
+  });
+  lightbox.init();
+</script>
+
 </main>
 {% endblock %}
