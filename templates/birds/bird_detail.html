@@ -83,7 +83,7 @@
 
   <p class="bird-detail__description">
     {% if bird.description %}
-      {{ bird.description }}
+      {{ bird.description|linebreaks }}
     {% else %}
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
       scelerisque aliquam odio et faucibus. Nulla rhoncus feugiat eros quis

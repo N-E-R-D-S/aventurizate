@@ -14,13 +14,13 @@
   </header>
 
   <section class="tour-detail__info">
-    <p><strong>📖 Descripción:</strong> {{ tour.description }}</p>
+    <p> {{ tour.description|linebreaks }}</p>
     <p><strong>📅 Fecha:</strong> {{ tour.date }}</p>
     <p><strong>👥 Cupo máximo:</strong> {{ tour.max_participants }}</p>
     <p><strong>✅ Cupos disponibles:</strong> {{ spots_available }}</p>
     <p><strong>📌 Reservados:</strong> {{ spots_taken }}</p>
     {% if tour.price %}
-    <p><strong>💲 Precio:</strong> ${{ tour.price }}</p>
+    <p><strong>💲 Precio:</strong> C$ {{ tour.price }}</p>
     {% endif %}
   </section>
 
