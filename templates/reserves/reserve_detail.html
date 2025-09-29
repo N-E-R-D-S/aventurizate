@@ -5,6 +5,15 @@
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'reserves.css' %}" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+  <!-- PhotoSwipe 5 -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/photoswipe@5/dist/photoswipe.css"
+  />
 {% endblock %}
 
 {% block body %}
@@ -62,12 +71,17 @@
       {% endfor %}
     </div>
   </section>
+  <section class="reserve-map">
+    <h2 class="reserve-map__subtitle">Ubicación de la reserva</h2>
+    <div id="reserve-map" style="height: 350px; border-radius: 12px; margin-bottom: 1.5rem;"></div>
+  </section>
 
-<!-- PhotoSwipe 5 -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/photoswipe@5/dist/photoswipe.css"
-/>
+
+</main>
+
+{% endblock %}
+
+{% block scripts %}
 <script type="module">
   import PhotoSwipeLightbox from "https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.js";
 
@@ -79,6 +93,23 @@
   });
   lightbox.init();
 </script>
-
-</main>
+<!-- Leaflet CSS y JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var lat = {{ latitude|stringformat:"f"|default:'null' }};
+    var lng = {{ longitude|stringformat:"f"|default:'null' }};
+    if (lat !== null && lng !== null) {
+      var map = L.map('reserve-map').setView([lat, lng], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a>'
+      }).addTo(map);
+      L.marker([lat, lng]).addTo(map)
+        .bindPopup('{{ reserve.name }}')
+        .openPopup();
+    }
+  });
+</script>
 {% endblock %}
