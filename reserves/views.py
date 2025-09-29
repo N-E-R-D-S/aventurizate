@@ -31,6 +31,8 @@ def reserve_detail(request, pk):
     """
     reserve = get_object_or_404(Reserve, pk=pk)
     birds = reserve.birds.all()
+    for bird in birds:
+        bird.photo = bird.photo_set.first()
     photos = reserve.reservephoto_set.all()
     context = {
         "reserve": reserve,

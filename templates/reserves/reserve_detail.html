@@ -18,7 +18,19 @@
     <h2 class="reserve-detail__subtitle">Aves que se pueden observar</h2>
     <ul class="reserve-detail__bird-list">
       {% for bird in birds %}
-      <li class="reserve-detail__bird-item">{{ bird.common_name }}</li>
+      <li class="reserve-detail__bird-item">
+        <article class="bird-in-reserve">
+          {% if bird.photo %}
+            <img class="bird-in-reserve__image" src="{{ bird.photo.image.url }}" alt="Foto de {{ bird.common_name }}">
+          {% else %}
+            <img class="bird-in-reserve__image" src="{% static 'images/no_bird_photo.png' %}" alt="Sin foto disponible">
+          {% endif %}
+          <div class="bird-in-reserve__info">
+            <a class="bird-in-reserve__name" href="{% url 'bird_detail' bird.slug %}">{{ bird.common_name }}</a>
+            <span class="bird-in-reserve__scientific">{{ bird.scientific_name }}</span>
+          </div>
+        </article>
+      </li>
       {% empty %}
       <li class="reserve-detail__bird-item">
         No se han registrado aves para esta reserva.
