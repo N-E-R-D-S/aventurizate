@@ -15,6 +15,10 @@ def reserve_list(request):
     page_number = request.GET.get('page')
     reserves = paginator.get_page(page_number)
 
+    for reserve in reserves:
+        photo = reserve.reservephoto_set.first()
+        reserve.photo = photo
+
     context = {
         'reserves': reserves
     }

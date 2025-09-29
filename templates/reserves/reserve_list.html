@@ -23,6 +23,13 @@
             {{ reserve.name }}
           </a>
         </h2>
+        {% if reserve.photo %}
+          <img
+            src="{{ reserve.photo.image.url }}"
+            alt="Foto de {{ reserve.name }}"
+            class="reserve-card__image"
+          />
+        {% endif %}
         <p class="reserve-card__description">
           {{ reserve.description|truncatewords:20 }}
         </p>
