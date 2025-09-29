@@ -37,6 +37,8 @@ def reserve_detail(request, pk):
     context = {
         "reserve": reserve,
         "birds": birds,
-        "photos": photos
+        "photos": photos,
+        "latitude": reserve.latitude,
+        "longitude": reserve.longitude,
     }
     return render(request, "reserves/reserve_detail.html", context)
