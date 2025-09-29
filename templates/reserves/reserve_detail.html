@@ -29,18 +29,44 @@
 
   <section class="reserve-detail__photos">
     <h2 class="reserve-detail__subtitle">Fotos de la reserva</h2>
-    <div class="reserve-detail__photo-grid">
+    <div id="photoswipe-gallery" class="reserve-detail__photo-grid">
       {% for photo in photos %}
-      <figure class="reserve-detail__photo-item">
+      <a
+        href="{{ photo.image.url }}"
+        data-pswp-width="1024"
+        data-pswp-height="768"
+        class="reserve-detail__photo-item"
+      >
         <img src="{{ photo.image.url }}" alt="{{ photo.description }}" />
         {% if photo.description %}
         <figcaption>{{ photo.description }}</figcaption>
         {% endif %}
-      </figure>
+      </a>
       {% empty %}
-      <p>No hay fotos disponibles.</p>
+      <div class="reserve-detail__photo-item">
+        <img src="{% static 'images/no_bird_photo.png' %}" alt="Sin foto disponible" />
+        <figcaption>Sin descripción</figcaption>
+      </div>
       {% endfor %}
     </div>
   </section>
+
+<!-- PhotoSwipe 5 -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/photoswipe@5/dist/photoswipe.css"
+/>
+<script type="module">
+  import PhotoSwipeLightbox from "https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.js";
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: "#photoswipe-gallery",
+    children: "a",
+    pswpModule: () =>
+      import("https://unpkg.com/photoswipe@5/dist/photoswipe.esm.js"),
+  });
+  lightbox.init();
+</script>
+
 </main>
 {% endblock %}
