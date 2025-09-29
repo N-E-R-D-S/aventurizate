@@ -1,7 +1,8 @@
 {% load static %}
-<header class="header">
+<header class="header" x-data="{ open: false }">
   <nav class="nav" aria-label="Menú principal">
-    <a class="nav__link" href="{% url 'index' %}">
+    <!-- Logo -->
+    <a href="{% url 'index' %}">
       <img
         class="nav__logo"
         src="{% static 'images/logo.svg' %}"
@@ -9,26 +10,44 @@
       />
     </a>
 
-    <a class="nav__link" href="{% url 'index' %}">Inicio</a>
-    <a class="nav__link" href="{% url 'bird_list' %}">Aves</a>
-    <a class="nav__link" href="{% url 'tour_list' %}">Tours</a>
-    <a class="nav__link" href="{% url 'reserve_list' %}">Reservas Naturales</a>
+    <!-- Botón menú hamburguesa -->
+    <button 
+      class="nav__toggle" 
+      aria-label="Abrir menú" 
+      @click="open = !open"
+    >
+      <span :class="{'rotate-45 translate-y-[6px]': open}"></span>
+      <span :class="{'opacity-0': open}"></span>
+      <span :class="{'-rotate-45 -translate-y-[6px]': open}"></span>
+    </button>
 
-    {% if user.is_authenticated %}
-      {% if user.is_guide %}
-        <a class="nav__link" href="{% url 'create_tour' %}">Crear Tour</a>
-        <a class="nav__link" href="{% url 'my_tours' %}">Mis Tours</a>
+    <!-- Links -->
+    <div 
+      class="nav__links" 
+      :class="{'active': open}" 
+      x-cloak
+    >
+      <a class="nav__link" href="{% url 'index' %}">Inicio</a>
+      <a class="nav__link" href="{% url 'bird_list' %}">Aves</a>
+      <a class="nav__link" href="{% url 'tour_list' %}">Tours</a>
+      <a class="nav__link" href="{% url 'reserve_list' %}">Reservas Naturales</a>
+
+      {% if user.is_authenticated %}
+        {% if user.is_guide %}
+          <a class="nav__link" href="{% url 'create_tour' %}">Crear Tour</a>
+          <a class="nav__link" href="{% url 'my_tours' %}">Mis Tours</a>
+        {% endif %}
+        {% if user.is_tourist %}
+          <a class="nav__link" href="{% url 'my_reservations' %}">Mis Reservas</a>
+        {% endif %}
+        {% if user.is_staff %}
+          <a class="nav__link" href="{% url 'admin:index' %}">Admin</a>
+        {% endif %}
+        <a class="nav__link" href="{% url 'logout' %}">Cerrar sesión</a>
+      {% else %}
+        <a class="nav__link" href="{% url 'login' %}">Iniciar sesión</a>
+        <a class="nav__link" href="{% url 'register' %}">Registrarse</a>
       {% endif %}
-      {% if user.is_tourist %}
-        <a class="nav__link" href="{% url 'my_reservations' %}">Mis Reservas</a>
-      {% endif %}
-      {% if user.is_staff %}
-        <a class="nav__link" href="{% url 'admin:index' %}">Admin</a>
-      {% endif %}
-      <a class="nav__link" href="{% url 'logout' %}">Cerrar sesión</a>
-    {% else %}
-      <a class="nav__link" href="{% url 'login' %}">Iniciar sesión</a>
-      <a class="nav__link" href="{% url 'register' %}">Registrarse</a>
-    {% endif %}
+    </div>
   </nav>
 </header>

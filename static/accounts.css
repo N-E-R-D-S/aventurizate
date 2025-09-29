@@ -36,6 +36,12 @@
   margin-bottom: var(--space-sm);
   color: var(--color-neutro);
 }
+.highlight__image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: var(--space-sm);
+  border-radius: var(--radius);
+}
 
 .highlight__subtitle {
   font-size: 1.2rem;
