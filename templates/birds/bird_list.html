@@ -55,9 +55,9 @@
   <!-- Paginación -->
   <nav class="pagination" aria-label="Paginación de catálogo de aves">
     {% if birds.has_previous %}
-    <a class="pagination__link" href="?page=1">« Primero</a>
+    <a class="pagination__link" href="?page=1"><i class="material-icons">first_page</i></a>
     <a class="pagination__link" href="?page={{ birds.previous_page_number }}"
-      >‹ Anterior</a
+      ><i class="material-icons">keyboard_arrow_left</i></a
     >
     {% endif %}
 
@@ -67,10 +67,10 @@
 
     {% if birds.has_next %}
     <a class="pagination__link" href="?page={{ birds.next_page_number }}"
-      >Siguiente ›</a
+      ><i class="material-icons">keyboard_arrow_right</i></a
     >
     <a class="pagination__link" href="?page={{ birds.paginator.num_pages }}"
-      >Último »</a
+      ><i class="material-icons">last_page</i></a
     >
     {% endif %}
   </nav>
