@@ -54,26 +54,26 @@
       {% for photo in photos %}
       <a
         href="{{ photo.image.url }}"
-        data-pswp-width="1024"
-        data-pswp-height="768"
+        data-pswp-width="{{ photo.image.width }}"
+        data-pswp-height="{{ photo.image.height }}"
         class="reserve-detail__photo-item"
       >
-        <img src="{{ photo.image.url }}" alt="{{ photo.description }}" />
+        <img class="reserve-detail__photo-img" style="border-radius: 8px;" src="{{ photo.image.url }}" alt="{{ photo.description }}" />
         {% if photo.description %}
         <figcaption>{{ photo.description }}</figcaption>
         {% endif %}
       </a>
       {% empty %}
       <div class="reserve-detail__photo-item">
-        <img src="{% static 'images/no_bird_photo.png' %}" alt="Sin foto disponible" />
+        <img class="reserve-detail__photo-img" src="{% static 'images/no_bird_photo.png' %}" alt="Sin foto disponible" />
         <figcaption>Sin descripción</figcaption>
       </div>
       {% endfor %}
     </div>
   </section>
   <section class="reserve-map">
-    <h2 class="reserve-map__subtitle">Ubicación de la reserva</h2>
-    <div id="reserve-map" style="height: 350px; border-radius: 12px; margin-bottom: 1.5rem;"></div>
+    <h2 class="reserve-detail__subtitle">Ubicación de la reserva</h2>
+    <div id="reserve-map" style="height: 350px; border-radius: 8px; margin-bottom: 1.5rem;"></div>
   </section>
 
 

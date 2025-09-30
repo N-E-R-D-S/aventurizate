@@ -50,9 +50,9 @@
   <!-- Paginación -->
   <nav class="pagination">
     {% if reserves.has_previous %}
-    <a href="?page=1" class="pagination__link">« Primero</a>
+    <a href="?page=1" class="pagination__link"><i class="material-icons">first_page</i></a>
     <a href="?page={{ reserves.previous_page_number }}" class="pagination__link"
-      >‹ Anterior</a
+      ><i class="material-icons">keyboard_arrow_left</i></a
     >
     {% endif %}
 
@@ -62,10 +62,10 @@
 
     {% if reserves.has_next %}
     <a href="?page={{ reserves.next_page_number }}" class="pagination__link"
-      >Siguiente ›</a
+      ><i class="material-icons">keyboard_arrow_right</i></a
     >
     <a href="?page={{ reserves.paginator.num_pages }}" class="pagination__link"
-      >Último »</a
+      ><i class="material-icons">last_page</i></a
     >
     {% endif %}
   </nav>

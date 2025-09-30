@@ -58,8 +58,8 @@
       {% for photo in photos %}
       <a
         href="{{ photo.image.url }}"
-        data-pswp-width="1024"
-        data-pswp-height="768"
+        data-pswp-width="{{ photo.image.width }}"
+        data-pswp-height="{{ photo.image.height }}"
         class="bird-detail__figure"
       >
         <img
