@@ -2,7 +2,7 @@
   margin: 0 auto;
   padding: 2rem;
   background: #fff;
-  border-radius: 12px;
+  border-radius: var(--radius);
   border: var(--border);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
@@ -46,21 +46,31 @@
 
 .reserve-detail__photo-grid {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-sm);
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }
 
 .reserve-detail__photo-item {
-  background: #fafafa;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  background: var(--color-neutro);
+  color: var(--color-white);
+  border-radius: var(--radius);
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.reserve-detail__photo-item:hover {
+  transform: var(--transform-hover);
+  box-shadow: var(--box-shadow);
 }
 
-.reserve-detail__photo-item img {
+.reserve-detail__photo-img {
+  border-radius: var(--radius);
   width: 100%;
-  height: auto;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--border);
   display: block;
+  transition: var(--transition);
 }
 
 .reserve-detail__photo-item figcaption {
@@ -85,6 +95,7 @@
 }
 
 .reserve-card {
+  max-width: 300px;
   background: var(--color-white);
   padding: 1.2rem;
   border-radius: var(--radius);
@@ -95,6 +106,7 @@
 
 .reserve-card:hover {
   transform: var(--transform-hover);
+  box-shadow: var(--box-shadow);
 }
 
 .reserve-card__title {
@@ -121,13 +133,13 @@
   color: #666;
 }
 .bird-in-reserve {
-  padding: var(--space-xs);  
+  padding: var(--space-xs);
 }
 .bird-in-reserve__image {
   width: 200px;
   height: 150px;
   object-fit: cover;
-  border-radius: var(--radius);
+  border-radius: var(--radius) !important;
   margin-right: 1rem;
 }
 .bird-in-reserve__info {
