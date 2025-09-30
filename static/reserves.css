@@ -90,7 +90,9 @@
 .reserve-list__items {
   list-style: none;
   padding: 0;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
 }
 
