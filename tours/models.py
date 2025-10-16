@@ -53,4 +53,4 @@ class TourReservation(models.Model):
         ordering = ["-reserved_at"]
 
     def __str__(self):
-        return f"Reserva de {self.tourist.user.username} en {self.tour.name} ({self.status})"
+        return f"Reserva de {self.tourist.user.username} en {self.tour.name} ({self.is_confirmed})"

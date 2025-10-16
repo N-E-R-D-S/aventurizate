@@ -15,8 +15,8 @@
   <ul class="participants__list">
     {% for r in participants %}
     <li class="participants__item">
-      <span class="participants__name">{{ r.tourist.user.username }}</span> – {%
-      if r.is_confirmed %}
+      <span class="participants__name">{{ r.tourist.user.username }}</span> 
+      {% if r.is_confirmed %}
       <span class="status">Confirmada</span>
       {% else %}
       <span class="status pending">Pendiente</span>
