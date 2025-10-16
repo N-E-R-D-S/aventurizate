@@ -69,7 +69,6 @@ a {
 a:hover {
   color: var(--color-accent);
 }
-
 form {
   background: var(--color-gray-light);
   padding: 2rem;

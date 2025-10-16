@@ -1,0 +1,12 @@
+.main {
+  max-width: var(--max-width);
+  margin: var(--space-lg) auto;
+  padding: 0 var(--space-md);
+  min-height: calc(100vh - 70px);
+}
+
+.main__title {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  color: var(--color-primary);
+}

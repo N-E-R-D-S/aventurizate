@@ -5,17 +5,19 @@
 
 {% block head %}
   <link rel="stylesheet" href="{% static 'birds.css' %}" />
+  <link rel="stylesheet" href="{% static 'card.css' %}" />
+  <link rel="stylesheet" href="{% static 'search.css' %}" />
   <link rel="stylesheet" href="{% static 'pagination.css' %}" />
 {% endblock %}
 
 {% block body %}
 
 <section class="birds">
-  <h1 class="birds__title">Catálogo de Aves</h1>
+  <h1 class="main__title">Catálogo de Aves</h1>
 
-  <form method="get" class="birds__form">
+  <form method="get" class="search__form">
     {% csrf_token %}
-    <div class="birds__search">
+    <div class="search">
       <input
         type="text"
         name="q"
@@ -26,28 +28,28 @@
     </div>
   </form>
 
-  <div class="birds__grid">
+  <div class="grid-card">
     {% for bird in birds %}
-    <article class="bird-card">
+    <article class="card">
       {% if bird.photo_set.first %}
       <img
-        class="bird-card__image"
+        class="card__image"
         src="{{ bird.photo_set.first.image.url }}"
         alt="Foto de {{ bird.common_name }}"
       />
       {% else %}
       <img
-        class="bird-card__image"
+        class="card__image"
         src="{% static 'images/no_bird_photo.png' %}"
         alt="Sin foto disponible"
       />
       {% endif %}
-      <div class="bird-card__body">
-        <h2 class="bird-card__title">{{ bird.common_name }}</h2>
-        <p class="bird-card__scientific">{{ bird.scientific_name }}</p>
-        <a class="bird-card__link" href="{% url 'bird_detail' bird.slug %}"
-          >Ver más</a
-        >
+      <div class="card__body">
+        <h2 class="card__title">{{ bird.common_name }}</h2>
+        <p class="card__scientific">{{ bird.scientific_name }}</p>
+        <a class="card__link" href="{% url 'bird_detail' bird.slug %}">
+          Ver más
+        </a>
       </div>
     </article>
     {% endfor %}

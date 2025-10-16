@@ -8,11 +8,9 @@
 {% endblock %}
 
 {% block body %}
-<section class="auth">
-  <h2 class="auth__title">Iniciar sesión</h2>
+  <h1 class="main__title">Iniciar sesión</h1>
   <form class="form form--auth" method="post">
     {% csrf_token %} {{ form.as_p }}
     <button class="button button--primary" type="submit">Entrar</button>
   </form>
-</section>
 {% endblock %}
