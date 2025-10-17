@@ -60,7 +60,6 @@
   transition: 0.3s;
 }
 
-/* responsive */
 @media (max-width: 768px) {
   .nav {
     flex-wrap: wrap;
@@ -86,27 +85,4 @@
     height: auto;
     justify-content: center;
   }
-}
-
-
-/* main */
-
-.main {
-  max-width: var(--max-width);
-  margin: var(--space-lg) auto;
-  padding: 0 var(--space-md);
-  min-height: calc(100vh - 70px);
-}
-
-/* footer */
-
-.footer {
-  background-color: var(--color-neutro);
-  color: var(--color-white);
-  text-align: center;
-  padding: var(--space-md);
-}
-
-.footer__text {
-  font-size: 0.9rem;
 }

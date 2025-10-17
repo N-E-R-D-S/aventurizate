@@ -12,6 +12,7 @@
   margin-bottom: var(--space-lg);
   color: var(--color-primary);
 }
+
 .reserve-card__image {
   width: 100%;
   height: auto;
@@ -58,6 +59,7 @@
   cursor: pointer;
   transition: var(--transition);
 }
+
 .reserve-detail__photo-item:hover {
   transform: var(--transform-hover);
   box-shadow: var(--box-shadow);
@@ -79,61 +81,6 @@
   text-align: center;
 }
 
-/* --- Lista de reservas --- */
-.reserve-list__title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: var(--color-primary);
-}
-
-.reserve-list__items {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.reserve-card {
-  max-width: 300px;
-  background: var(--color-white);
-  padding: 1.2rem;
-  border-radius: var(--radius);
-  box-shadow: var(--box-shadow);
-  border: var(--border);
-  transition: var(--transition);
-}
-
-.reserve-card:hover {
-  transform: var(--transform-hover);
-  box-shadow: var(--box-shadow);
-}
-
-.reserve-card__title {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-}
-
-.reserve-card__link {
-  color: var(--color-accent);
-  text-decoration: none;
-}
-
-.reserve-card__link:hover {
-  text-decoration: underline;
-}
-
-.reserve-card__description {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.reserve-card__location {
-  font-size: 0.9rem;
-  color: #666;
-}
 .bird-in-reserve {
   padding: var(--space-xs);
 }

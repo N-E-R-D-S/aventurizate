@@ -69,7 +69,6 @@ a {
 a:hover {
   color: var(--color-accent);
 }
-
 form {
   background: var(--color-gray-light);
   padding: 2rem;
@@ -127,30 +126,9 @@ form button:hover {
   filter: var(--filter-brightness);
 }
 
-/* --- Paginación --- */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
-}
-
-.pagination__link {
-  padding: 0.5rem 1rem;
-  background: var(--color-primary);
-  color: var(--color-white);
-  border-radius: 6px;
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.pagination__link:hover {
-  filter: var(--filter-brightness);
-  color: var(--color-white);
-}
-
-.pagination__info {
-  color: #333;
-  padding: 0.5rem 1rem;
+.message {
+  background-color: #ffdddd;
+  border-left: 6px solid #f44336;
+  margin-bottom: 15px;
+  padding: 10px 15px;
 }
