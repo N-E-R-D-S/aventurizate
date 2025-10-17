@@ -136,5 +136,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
-PAYPAL_RECEIVER_EMAIL = 'aventurizate.nerds@gmail.com' # Use sandbox email for testing
+PAYPAL_RECEIVER_EMAIL = 'damv2007@gmail.com' # Use sandbox email for testing
 PAYPAL_TEST = True # Set to False for live transactions
