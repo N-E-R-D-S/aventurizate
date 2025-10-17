@@ -23,7 +23,7 @@
     {% if bird_photo %}
       <img class="highlight__image" src="{{ bird_photo.image.url }}" alt="{{ bird_photo.description }}">
     {% endif %}
-    <p class="highlight__text">{{ random_bird.description }}</p>
+    <p class="highlight__text">{{ random_bird.description|truncatechars:200 }}</p>
     <a href="{% url 'bird_detail' random_bird.slug %}">Ver más</a>
   </article>
 </section>
@@ -37,7 +37,7 @@
     {% if random_tour.photo %}
       <img class="highlight__image" src="{{ random_tour.photo.url }}" alt="{{ random_tour.name }}">
     {% endif %}
-    <p class="highlight__text">{{ random_tour.description }}</p>
+    <p class="highlight__text">{{ random_tour.description|truncatechars:200 }}</p>
     <p class="highlight__date">Fecha: {{ random_tour.date }}</p>
     <a href="{% url 'tour_detail' random_tour.id %}">Ver más</a>
   </article>
@@ -51,7 +51,7 @@
       {% if reserve_photo %}
           <img class="highlight__image" src="{{ reserve_photo.image.url }}" alt="{{ reserve_photo.description }}">
       {% endif %}
-      <p class="highlight__text">{{ random_reserve.description }}</p>
+      <p class="highlight__text">{{ random_reserve.description|truncatechars:200 }}</p>
       <a href="{% url 'reserve_detail' random_reserve.id %}">Ver más</a>
     </article>
   </section>
