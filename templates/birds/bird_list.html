@@ -12,70 +12,68 @@
 
 {% block body %}
 
-<section class="birds">
-  <h1 class="main__title">Catálogo de Aves</h1>
+<h1 class="main__title">Catálogo de Aves</h1>
 
-  <form method="get" class="search__form">
-    {% csrf_token %}
-    <div class="search">
-      <input
-        type="text"
-        name="q"
-        value="{{ query|default:'' }}"
-        placeholder="Buscar por nombre, científico o descripción..."
-      />
-      <button type="submit">Buscar</button>
-    </div>
-  </form>
-
-  <div class="grid-card">
-    {% for bird in birds %}
-    <article class="card">
-      {% if bird.photo_set.first %}
-      <img
-        class="card__image"
-        src="{{ bird.photo_set.first.image.url }}"
-        alt="Foto de {{ bird.common_name }}"
-      />
-      {% else %}
-      <img
-        class="card__image"
-        src="{% static 'images/no_bird_photo.png' %}"
-        alt="Sin foto disponible"
-      />
-      {% endif %}
-      <div class="card__body">
-        <h2 class="card__title">{{ bird.common_name }}</h2>
-        <p class="card__scientific">{{ bird.scientific_name }}</p>
-        <a class="card__link" href="{% url 'bird_detail' bird.slug %}">
-          Ver más
-        </a>
-      </div>
-    </article>
-    {% endfor %}
+<form method="get" class="search__form">
+  {% csrf_token %}
+  <div class="search">
+    <input
+      type="text"
+      name="q"
+      value="{{ query|default:'' }}"
+      placeholder="Buscar por nombre, científico o descripción..."
+    />
+    <button type="submit">Buscar</button>
   </div>
+</form>
 
-  <!-- Paginación -->
-  <nav class="pagination" aria-label="Paginación de catálogo de aves">
-    {% if birds.has_previous %}
-    <a class="pagination__link" href="?page=1"><i class="material-icons">first_page</i></a>
-    <a class="pagination__link" href="?page={{ birds.previous_page_number }}"
-      ><i class="material-icons">keyboard_arrow_left</i></a
-    >
+<div class="grid-card">
+  {% for bird in birds %}
+  <article class="card">
+    {% if bird.photo_set.first %}
+    <img
+      class="card__image"
+      src="{{ bird.photo_set.first.image.url }}"
+      alt="Foto de {{ bird.common_name }}"
+    />
+    {% else %}
+    <img
+      class="card__image"
+      src="{% static 'images/no_bird_photo.png' %}"
+      alt="Sin foto disponible"
+    />
     {% endif %}
+    <div class="card__body">
+      <h2 class="card__title">{{ bird.common_name }}</h2>
+      <p class="card__scientific">{{ bird.scientific_name }}</p>
+      <a class="card__link" href="{% url 'bird_detail' bird.slug %}">
+        Ver más
+      </a>
+    </div>
+  </article>
+  {% endfor %}
+</div>
 
-    <span class="pagination__info">
-      Página {{ birds.number }} de {{ birds.paginator.num_pages }}
-    </span>
+<!-- Paginación -->
+<nav class="pagination" aria-label="Paginación de catálogo de aves">
+  {% if birds.has_previous %}
+  <a class="pagination__link" href="?page=1"><i class="material-icons">first_page</i></a>
+  <a class="pagination__link" href="?page={{ birds.previous_page_number }}"
+    ><i class="material-icons">keyboard_arrow_left</i></a
+  >
+  {% endif %}
 
-    {% if birds.has_next %}
-    <a class="pagination__link" href="?page={{ birds.next_page_number }}"
-      ><i class="material-icons">keyboard_arrow_right</i></a
-    >
-    <a class="pagination__link" href="?page={{ birds.paginator.num_pages }}"
-      ><i class="material-icons">last_page</i></a
-    >
-    {% endif %}
-  </nav>
-</section>
+  <span class="pagination__info">
+    Página {{ birds.number }} de {{ birds.paginator.num_pages }}
+  </span>
+
+  {% if birds.has_next %}
+  <a class="pagination__link" href="?page={{ birds.next_page_number }}"
+    ><i class="material-icons">keyboard_arrow_right</i></a
+  >
+  <a class="pagination__link" href="?page={{ birds.paginator.num_pages }}"
+    ><i class="material-icons">last_page</i></a
+  >
+  {% endif %}
+</nav>
 {% endblock %}
