@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -10,4 +10,8 @@ urlpatterns = [
     path("my-reservations/", views.my_reservations, name="my_reservations"),
     path("<int:tour_id>/participants/",
          views.tour_participants, name="tour_participants"),
+    path('paypal/', include('paypal.standard.ipn.urls')),
+    path('payment/<int:reservation_id>/', views.payment_view, name='payment'),
+    path('payment/done/', views.payment_done, name='payment_done'),
+    path('payment/cancelled/', views.payment_cancelled, name='payment_cancelled'),
 ]

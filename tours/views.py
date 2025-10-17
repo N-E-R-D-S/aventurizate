@@ -70,6 +70,10 @@ def my_tours(request):
     }
     return render(request, "tours/my_tours.html", context)
 
+from django.urls import reverse
+from paypal.standard.forms import PayPalPaymentsForm
+
+
 @login_required
 def reserve_tour(request, tour_id):
     tour = get_object_or_404(Tour, id=tour_id, published=True)
@@ -89,10 +93,50 @@ def reserve_tour(request, tour_id):
 
     if not created:
         messages.info(request, "Ya tienes una reserva para este tour.")
-    else:
-        messages.success(request, "Tu reserva fue registrada con éxito.")
+        return redirect("my_reservations")
 
-    return redirect("my_reservations")
+    # Si la reserva es nueva, redirigir al pago
+    messages.success(request, "Tu reserva fue registrada. Procede al pago.")
+    return redirect("payment", reservation_id=reservation.id)
+
+
+@login_required
+def payment_view(request, reservation_id):
+    """Genera el formulario de pago PayPal para una reserva."""
+    reservation = get_object_or_404(TourReservation, id=reservation_id)
+    tour = reservation.tour
+
+    paypal_dict = {
+        "business": "damv2007@gmail.com",
+        "amount": str(tour.price),
+        "item_name": f"Reserva del tour: {tour.name}",
+        "invoice": f"res-{reservation.id}",
+        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+        "return": request.build_absolute_uri(reverse('payment_done')),
+        "cancel_return": request.build_absolute_uri(reverse('payment_cancelled')),
+        "custom": str(reservation.id),
+    }
+
+    form = PayPalPaymentsForm(initial=paypal_dict)
+    context = {
+        "form": form,
+        "reservation": reservation,
+        "tour": tour
+    }
+    return render(request, "tours/payment.html", context)
+
+
+@login_required
+def payment_done(request):
+    messages.success(request, "Pago completado con éxito. ¡Tu reserva está confirmada!")
+    return render(request, "tours/payment_done.html")
+
+
+@login_required
+def payment_cancelled(request):
+    messages.warning(request, "El pago fue cancelado. Tu reserva no ha sido confirmada.")
+    return render(request, "tours/payment_cancelled.html")
+
 
 
 @login_required
