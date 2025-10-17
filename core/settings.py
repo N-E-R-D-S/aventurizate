@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
     "accounts",
     "birds",
     "reserves",
@@ -135,3 +136,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+PAYPAL_RECEIVER_EMAIL = 'aventurizate.nerds@gmail.com' # Use sandbox email for testing
+PAYPAL_TEST = True # Set to False for live transactions

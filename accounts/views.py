@@ -39,6 +39,7 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             return redirect("index")
+        return render(request, "accounts/login.html", {"form": form, "message": "Nombre de usuario o contraseña incorrectos."})
     else:
         form = AuthenticationForm()
     context = {"form": form}
@@ -61,13 +62,13 @@ def register_view(request):
         confirmation = request.POST.get("confirmation", "")
         if password != confirmation:
             context = {
-                "message": "Passwords must match."
+                "message": "Las contraseñas deben coincidir."
             }
             return render(request, "accounts/register.html", context)
         user_type = request.POST.get("user_type", "tourist")
         if user_type not in ["tourist", "guide"]:
             context = {
-                "message": "Invalid user type."
+                "message": "Tipo de usuario inválido."
             }
             return render(request, "accounts/register.html", context)
         try:
@@ -85,7 +86,7 @@ def register_view(request):
             return redirect("index")
         except Exception as e:
             context = {
-                "message": "Username already taken."
+                "message": "El nombre de usuario ya está en uso."
             }
             return render(request, "accounts/register.html", context)
     return render(request, "accounts/register.html")

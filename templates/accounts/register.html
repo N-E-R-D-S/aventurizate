@@ -9,6 +9,9 @@
 
 {% block body %}
 <h1 class="main__title">Registrarse</h1>
+{% if message %}
+    <div class="message">{{ message }}</div>
+{% endif %}
 <form method="post">
   {% csrf_token %}
 

@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>Pago del Tour: {{ tour.name }}</h2>
+<p>Monto a pagar: <strong>${{ tour.price }}</strong></p>
+
+{{ form.render }}
+
+{% endblock %}

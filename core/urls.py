@@ -24,6 +24,7 @@ urlpatterns = [
     path('birds/', include('birds.urls')),
     path('reserves/', include('reserves.urls')),
     path('tours/', include('tours.urls')),
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
